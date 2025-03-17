@@ -53,7 +53,8 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = "192.168.7.101/24"
+        gateway = "192.168.7.1"
       }
       ipv6 {
         address = "auto"
@@ -104,7 +105,8 @@ resource "proxmox_virtual_environment_container" "loki_container" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = "192.168.7.102/24"
+        gateway = "192.168.7.1"
       }
       ipv6 {
         address = "auto"
