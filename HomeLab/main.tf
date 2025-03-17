@@ -14,6 +14,11 @@ variable "node_name" {
   type        = string
 }
 
+variable "ssh_key" {
+  description = "Public SSH key to insert into containers"
+  type        = string
+}
+
 terraform {
   required_providers {
     proxmox = {
@@ -54,6 +59,11 @@ resource "proxmox_virtual_environment_container" "logs_container" {
         address = "auto"
       }
     }
+
+    user_account {
+      password = random_password.logs_container_password.result
+      keys     = [var.ssh_key]
+    }
   }
 
   cpu {
@@ -77,7 +87,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
+    template_file_id = "local:vztmpl/almalinux-9-default_20221108_amd64.tar.xz"
     type             = "centos"
   }
 
@@ -103,6 +113,7 @@ resource "proxmox_virtual_environment_container" "loki_container" {
 
     user_account {
       password = random_password.loki_container_password.result
+      keys     = [var.ssh_key]
     }
   }
 
@@ -141,5 +152,16 @@ resource "random_password" "loki_container_password" {
 
 output "loki_container_password" {
   value     = random_password.loki_container_password.result
+  sensitive = true
+}
+
+resource "random_password" "logs_container_password" {
+  length           = 16
+  override_special = "_%@"
+  special          = true
+}
+
+output "logs_container_password" {
+  value     = random_password.logs_container_password.result
   sensitive = true
 }
