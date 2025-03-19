@@ -61,6 +61,11 @@ resource "proxmox_virtual_environment_container" "logs_container" {
       }
     }
 
+    dns {
+      domain  = "localdomain"
+      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+    }
+
     user_account {
       password = random_password.logs_container_password.result
       keys     = [var.ssh_key]
@@ -68,12 +73,12 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   cpu {
-    cores = "1"
+    cores = "2"
     units = "100" # this is priority of cpu
   }
 
   memory {
-    dedicated = "512"
+    dedicated = "1024"
     swap      = "512"
   }
 
@@ -113,6 +118,11 @@ resource "proxmox_virtual_environment_container" "loki_container" {
       }
     }
 
+    dns {
+      domain  = "localdomain"
+      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+    }
+
     user_account {
       password = random_password.loki_container_password.result
       keys     = [var.ssh_key]
@@ -120,12 +130,69 @@ resource "proxmox_virtual_environment_container" "loki_container" {
   }
 
   cpu {
-    cores = "1"
+    cores = "2"
     units = "100" # this is priority of cpu
   }
 
   memory {
-    dedicated = "512"
+    dedicated = "1024"
+    swap      = "512"
+  }
+
+  disk {
+    datastore_id = "local-lvm"
+    size         = "8"
+  }
+
+  network_interface {
+    name     = "eth0"
+    firewall = "true"
+  }
+
+  operating_system {
+    template_file_id = "local:vztmpl/centos-9-stream-default_20221109_amd64.tar.xz"
+    type             = "centos"
+  }
+
+}
+
+resource "proxmox_virtual_environment_container" "graphs_container" {
+  description = "Graphs Container"
+
+  node_name = var.node_name
+  vm_id     = 103
+
+  initialization {
+    hostname = "graphs"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.7.103/24"
+        gateway = "192.168.7.1"
+      }
+      ipv6 {
+        address = "auto"
+      }
+    }
+
+    dns {
+      domain  = "localdomain"
+      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+    }
+
+    user_account {
+      password = random_password.loki_container_password.result
+      keys     = [var.ssh_key]
+    }
+  }
+
+  cpu {
+    cores = "2"
+    units = "100" # this is priority of cpu
+  }
+
+  memory {
+    dedicated = "1024"
     swap      = "512"
   }
 
@@ -165,5 +232,17 @@ resource "random_password" "logs_container_password" {
 
 output "logs_container_password" {
   value     = random_password.logs_container_password.result
+  sensitive = true
+}
+
+
+resource "random_password" "graphs_container_password" {
+  length           = 16
+  override_special = "_%@"
+  special          = true
+}
+
+output "graphs_container_password" {
+  value     = random_password.graphs_container_password.result
   sensitive = true
 }
