@@ -150,7 +150,7 @@ resource "proxmox_virtual_environment_container" "loki_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/centos-9-stream-default_20221109_amd64.tar.xz"
+    template_file_id = "local:vztmpl/almalinux-9-default_20221108_amd64.tar.xz"
     type             = "centos"
   }
 
@@ -207,8 +207,13 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/centos-9-stream-default_20221109_amd64.tar.xz"
+    template_file_id = "local:vztmpl/almalinux-9-default_20221108_amd64.tar.xz"
     type             = "centos"
+  }
+
+  features {
+    nesting = "true"
+    fuse    = "true"
   }
 
 }
