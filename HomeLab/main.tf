@@ -24,8 +24,9 @@ provider "proxmox" {
 resource "proxmox_virtual_environment_container" "logs_container" {
   description = "Logs Container"
 
-  node_name = var.node_name
-  vm_id     = 101
+  node_name    = var.node_name
+  vm_id        = 101
+  unprivileged = "true"
 
   initialization {
     hostname = "logs"
@@ -72,7 +73,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20221108_amd64.tar.xz"
+    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
     type             = "centos"
   }
 
@@ -81,8 +82,9 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 resource "proxmox_virtual_environment_container" "loki_container" {
   description = "Loki Container"
 
-  node_name = var.node_name
-  vm_id     = 102
+  node_name    = var.node_name
+  vm_id        = 102
+  unprivileged = "true"
 
   initialization {
     hostname = "loki"
@@ -129,7 +131,7 @@ resource "proxmox_virtual_environment_container" "loki_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20221108_amd64.tar.xz"
+    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
     type             = "centos"
   }
 
@@ -138,8 +140,9 @@ resource "proxmox_virtual_environment_container" "loki_container" {
 resource "proxmox_virtual_environment_container" "graphs_container" {
   description = "Graphs Container"
 
-  node_name = var.node_name
-  vm_id     = 103
+  node_name    = var.node_name
+  vm_id        = 103
+  unprivileged = "true"
 
   initialization {
     hostname = "graphs"
@@ -186,7 +189,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20221108_amd64.tar.xz"
+    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
     type             = "centos"
   }
 
