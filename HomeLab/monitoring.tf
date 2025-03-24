@@ -25,7 +25,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   description = "Logs Container"
 
   node_name    = var.node_name
-  vm_id        = 101
+  vm_id        = 102
   unprivileged = "true"
 
   initialization {
@@ -33,7 +33,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 
     ip_config {
       ipv4 {
-        address = "192.168.7.101/24"
+        address = "192.168.7.102/24"
         gateway = "192.168.7.1"
       }
       ipv6 {
@@ -64,65 +64,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 
   disk {
     datastore_id = "local-lvm"
-    size         = "8"
-  }
-
-  network_interface {
-    name     = "eth0"
-    firewall = "true"
-  }
-
-  operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
-    type             = "centos"
-  }
-
-}
-
-resource "proxmox_virtual_environment_container" "loki_container" {
-  description = "Loki Container"
-
-  node_name    = var.node_name
-  vm_id        = 102
-  unprivileged = "true"
-
-  initialization {
-    hostname = "loki"
-
-    ip_config {
-      ipv4 {
-        address = "192.168.7.102/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-
-    dns {
-      domain  = "localdomain"
-      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
-    }
-
-    user_account {
-      password = random_password.loki_container_password.result
-      keys     = [var.ssh_key]
-    }
-  }
-
-  cpu {
-    cores = "2"
-    units = "100" # this is priority of cpu
-  }
-
-  memory {
-    dedicated = "1024"
-    swap      = "512"
-  }
-
-  disk {
-    datastore_id = "local-lvm"
-    size         = "8"
+    size         = "15"
   }
 
   network_interface {
@@ -163,7 +105,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
     }
 
     user_account {
-      password = random_password.loki_container_password.result
+      password = random_password.graphs_container_password.result
       keys     = [var.ssh_key]
     }
   }
@@ -198,12 +140,6 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
     fuse    = "true"
   }
 
-}
-
-resource "random_password" "loki_container_password" {
-  length           = 16
-  override_special = "_%@"
-  special          = true
 }
 
 resource "random_password" "logs_container_password" {
