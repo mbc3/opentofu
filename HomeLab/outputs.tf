@@ -12,3 +12,8 @@ output "test_container_password" {
   value     = random_password.test_container_password.result
   sensitive = true
 }
+
+output "dns_container_password" {
+  value     = random_password.dns_container_password.result
+  sensitive = true
+}
