@@ -54,6 +54,10 @@ resource "proxmox_virtual_environment_container" "dns_container" {
     type             = "debian"
   }
 
+  features {
+    nesting = "true"
+  }
+
 }
 
 resource "random_password" "dns_container_password" {
