@@ -27,6 +27,8 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   node_name    = var.node_name
   vm_id        = 102
   unprivileged = "true"
+  tags         = ["monitoring"]
+
 
   initialization {
     hostname = "logs"
@@ -43,7 +45,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 
     dns {
       domain  = "localdomain"
-      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+      servers = ["192.168.7.101", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
     }
 
     user_account {
@@ -77,6 +79,10 @@ resource "proxmox_virtual_environment_container" "logs_container" {
     type             = "centos"
   }
 
+  startup {
+    order = "2"
+  }
+
 }
 
 resource "proxmox_virtual_environment_container" "graphs_container" {
@@ -85,6 +91,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   node_name    = var.node_name
   vm_id        = 103
   unprivileged = "true"
+  tags         = ["monitoring"]
 
   initialization {
     hostname = "graphs"
@@ -101,7 +108,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
 
     dns {
       domain  = "localdomain"
-      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+      servers = ["192.168.7.101", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
     }
 
     user_account {
@@ -133,6 +140,10 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   operating_system {
     template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
     type             = "centos"
+  }
+
+  startup {
+    order = "3"
   }
 
   features {

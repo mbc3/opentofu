@@ -13,7 +13,12 @@ output "test_container_password" {
   sensitive = true
 }
 
-output "dns_container_password" {
-  value     = random_password.dns_container_password.result
+output "dns01_container_password" {
+  value     = random_password.dns01_container_password.result
+  sensitive = true
+}
+
+output "dns02_container_password" {
+  value     = random_password.dns02_container_password.result
   sensitive = true
 }

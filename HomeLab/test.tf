@@ -4,6 +4,7 @@ resource "proxmox_virtual_environment_container" "test_container" {
   node_name    = var.node_name
   vm_id        = 100
   unprivileged = "true"
+  tags         = ["testing"]
 
   initialization {
     hostname = "test"
@@ -20,11 +21,11 @@ resource "proxmox_virtual_environment_container" "test_container" {
 
     dns {
       domain  = "localdomain"
-      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+      servers = ["192.168.7.101", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
     }
 
     user_account {
-      password = random_password.logs_container_password.result
+      password = random_password.test_container_password.result
       keys     = [var.ssh_key]
     }
   }
