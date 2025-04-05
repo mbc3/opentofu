@@ -16,8 +16,9 @@ provider "proxmox" {
   tmp_dir  = "/var/tmp"
 
   ssh {
-    agent    = true
-    username = "opentofu"
+    agent       = true
+    username    = "root"
+    private_key = file("~/.ssh/proxmox")
   }
 }
 

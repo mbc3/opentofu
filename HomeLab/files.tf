@@ -14,9 +14,8 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   stop_on_destroy = true
 
   startup {
-    order      = "3"
-    up_delay   = "10"
-    down_delay = "10"
+    order    = "3"
+    up_delay = "10"
   }
 
   cpu {
@@ -24,9 +23,9 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     type  = "x86-64-v2-AES" # recommended for modern CPUs
   }
 
-  cdrom {
-    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
-  }
+  # cdrom {
+  #   file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
+  # }
 
   memory {
     dedicated = 2048
@@ -40,7 +39,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
-    file_format  = "raw"
+    file_id      = proxmox_virtual_environment_download_file.alma_cloud_init.id
   }
 
   initialization {
@@ -52,6 +51,10 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
       ipv6 {
         address = "auto"
       }
+    }
+    user_account {
+      username = "ansible"
+      keys     = [var.ssh_key]
     }
   }
 
