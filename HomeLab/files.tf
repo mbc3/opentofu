@@ -32,6 +32,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     floating  = 2048 # set equal to dedicated to enable ballooning
   }
 
+  # boot disk
   disk {
     datastore_id = "local-lvm"
     interface    = "scsi0"
@@ -41,6 +42,17 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     backup       = "true"
     file_id      = proxmox_virtual_environment_download_file.alma_cloud_init.id
   }
+
+  # attached disk
+  disk {
+    datastore_id = "share"
+    interface    = "scsi1"
+    size         = "50"
+    backup       = "true"
+    file_format  = "raw"
+  }
+
+
 
   initialization {
     ip_config {
