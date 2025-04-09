@@ -14,8 +14,8 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
   stop_on_destroy = true
 
   startup {
-    order    = "1"
-    up_delay = "5"
+    order    = "2"
+    up_delay = "10"
   }
 
   cpu {
