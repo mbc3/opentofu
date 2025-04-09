@@ -43,6 +43,10 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
   }
 
   initialization {
+    dns {
+      domain  = var.search_domain
+      servers = var.dns_servers
+    }
     ip_config {
       ipv4 {
         address = "192.168.7.105/24"

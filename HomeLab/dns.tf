@@ -31,8 +31,7 @@ resource "proxmox_virtual_environment_container" "dns01_container" {
   }
 
   cpu {
-    cores = "2"
-    units = "100" # this is priority of cpu
+    cores = "4"
   }
 
   memory {
@@ -105,8 +104,7 @@ resource "proxmox_virtual_environment_container" "dns02_container" {
   }
 
   cpu {
-    cores = "2"
-    units = "100" # this is priority of cpu
+    cores = "4"
   }
 
   memory {
