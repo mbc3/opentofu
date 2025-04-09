@@ -20,12 +20,14 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
 
   cpu {
     cores = 2
-    type  = "x86-64-v2-AES" # recommended for modern CPUs
+    type  = "host"
   }
 
-  # cdrom {
-  #   file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
-  # }
+  boot_order = ["scsi0", "ide3", "net0"]
+
+  cdrom {
+    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
+  }
 
   memory {
     dedicated = 2048
@@ -39,27 +41,6 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
-    file_id      = proxmox_virtual_environment_download_file.alma_cloud_init.id
-  }
-
-  initialization {
-    dns {
-      domain  = var.search_domain
-      servers = var.dns_servers
-    }
-    ip_config {
-      ipv4 {
-        address = "192.168.7.105/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-    user_account {
-      username = "ansible"
-      keys     = [var.ssh_key]
-    }
   }
 
   network_device {
