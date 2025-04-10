@@ -7,8 +7,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   vm_id     = 104
 
   agent {
-    # read 'Qemu guest agent' section, change to true only when ready
-    enabled = false
+    enabled = true
   }
   # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
   stop_on_destroy = true
@@ -20,7 +19,8 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
 
   cpu {
     cores = 2
-    type  = "x86-64-v2-AES" # recommended for modern CPUs
+    type  = "x86-64-v2-AES"
+    units = "100"
   }
 
   # cdrom {
