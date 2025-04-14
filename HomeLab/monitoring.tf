@@ -22,7 +22,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 
     dns {
       domain  = "localdomain"
-      servers = ["192.168.7.101", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+      servers = var.dns_servers
     }
 
     user_account {
@@ -85,7 +85,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
 
     dns {
       domain  = "localdomain"
-      servers = ["192.168.7.101", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+      servers = var.dns_servers
     }
 
     user_account {

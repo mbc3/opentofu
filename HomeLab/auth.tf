@@ -51,3 +51,68 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
     type = "l26"
   }
 }
+
+resource "proxmox_virtual_environment_container" "ca_container" {
+  description = "CA Container"
+
+  node_name    = var.node_name
+  vm_id        = 107
+  unprivileged = "true"
+  tags         = ["auth"]
+
+  initialization {
+    hostname = "ca"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.7.107/24"
+        gateway = "192.168.7.1"
+      }
+      ipv6 {
+        address = "auto"
+      }
+    }
+
+    dns {
+      domain  = "localdomain"
+      servers = var.dns_servers
+    }
+
+    user_account {
+      password = random_password.ca_container_password.result
+      keys     = [var.ssh_key]
+    }
+  }
+
+  cpu {
+    cores = "2"
+    units = "100" # this is priority of cpu
+  }
+
+  memory {
+    dedicated = "1024"
+    swap      = "512"
+  }
+
+  disk {
+    datastore_id = "local-lvm"
+    size         = "15"
+  }
+
+  network_interface {
+    name     = "eth0"
+    firewall = "true"
+  }
+
+  operating_system {
+    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
+    type             = "centos"
+  }
+
+}
+
+resource "random_password" "ca_container_password" {
+  length           = 16
+  override_special = "_%@"
+  special          = true
+}
