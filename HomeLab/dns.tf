@@ -55,7 +55,8 @@ resource "proxmox_virtual_environment_container" "dns01_container" {
   }
 
   startup {
-    order = "1"
+    order    = "1"
+    up_delay = "1"
   }
 
   features {
@@ -128,7 +129,8 @@ resource "proxmox_virtual_environment_container" "dns02_container" {
   }
 
   startup {
-    order = "1"
+    order    = "1"
+    up_delay = "2"
   }
 
   features {

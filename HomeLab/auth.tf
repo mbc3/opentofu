@@ -109,6 +109,11 @@ resource "proxmox_virtual_environment_container" "ca_container" {
     type             = "centos"
   }
 
+  startup {
+    order    = "2"
+    up_delay = "2"
+  }
+
 }
 
 resource "random_password" "ca_container_password" {

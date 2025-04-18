@@ -13,8 +13,8 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   stop_on_destroy = true
 
   startup {
-    order    = "1"
-    up_delay = "10"
+    order    = "2"
+    up_delay = "5"
   }
 
   cpu {
