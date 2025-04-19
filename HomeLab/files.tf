@@ -43,17 +43,6 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     file_id      = proxmox_virtual_environment_download_file.alma_cloud_init.id
   }
 
-  # attached disk
-  disk {
-    datastore_id = "share"
-    interface    = "scsi1"
-    size         = "50"
-    backup       = "true"
-    file_format  = "raw"
-  }
-
-
-
   initialization {
     dns {
       domain  = var.search_domain
@@ -72,6 +61,14 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
       username = "ansible"
       keys     = [var.ssh_key]
     }
+
+  }
+
+  virtiofs {
+    mapping    = "files"
+    cache      = "auto"
+    direct_io  = false
+    expose_acl = false
   }
 
   network_device {
