@@ -19,13 +19,15 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
 
   cpu {
     cores = 2
-    type  = "x86-64-v2-AES"
+    type  = "host"
     units = "100"
   }
 
-  # cdrom {
-  #   file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
-  # }
+  boot_order = ["scsi0", "ide3", "net0"]
+
+  cdrom {
+    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
+  }
 
   memory {
     dedicated = 2048
@@ -40,35 +42,16 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
-    file_id      = proxmox_virtual_environment_download_file.alma_cloud_init.id
   }
 
-  initialization {
-    dns {
-      domain  = var.search_domain
-      servers = var.dns_servers
-    }
-    ip_config {
-      ipv4 {
-        address = "192.168.7.104/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-    user_account {
-      username = "ansible"
-      keys     = [var.ssh_key]
-    }
-
-  }
-
-  virtiofs {
-    mapping    = "files"
-    cache      = "auto"
-    direct_io  = false
-    expose_acl = false
+  disk {
+    datastore_id = "share"
+    interface    = "scsi1"
+    size         = "100"
+    file_format  = "qcow2"
+    ssd          = "true"
+    discard      = "on"
+    backup       = "false"
   }
 
   network_device {

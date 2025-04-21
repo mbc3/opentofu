@@ -14,12 +14,12 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
 
   startup {
     order    = "2"
-    up_delay = "10"
+    up_delay = "5"
   }
 
   cpu {
     cores = 2
-    type  = "x86-64-v2-AES"
+    type  = "host"
     units = "100"
   }
 
@@ -34,6 +34,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
     floating  = 2048 # set equal to dedicated to enable ballooning
   }
 
+  # boot disk
   disk {
     datastore_id = "local-lvm"
     interface    = "scsi0"
