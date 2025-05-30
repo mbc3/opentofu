@@ -1,10 +1,10 @@
-resource "proxmox_virtual_environment_vm" "files_vm" {
-  name        = "files"
-  description = "File Server"
-  tags        = ["files"]
+resource "proxmox_virtual_environment_vm" "semaphore_vm" {
+  name        = "semaphore"
+  description = "Semaphore Server"
+  tags        = ["automation"]
 
   node_name = var.node_name
-  vm_id     = 104
+  vm_id     = 108
 
   agent {
     enabled = true
@@ -13,12 +13,12 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   stop_on_destroy = true
 
   startup {
-    order    = "2"
+    order    = "3"
     up_delay = "5"
   }
 
   cpu {
-    cores = 2
+    cores = 4
     type  = "host"
     units = "100"
   }
@@ -26,7 +26,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   boot_order = ["scsi0", "ide3", "net0"]
 
   cdrom {
-    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
+    file_id = "local:iso/AlmaLinux-10.0-x86_64-minimal.iso"
   }
 
   memory {
@@ -42,16 +42,6 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
-  }
-
-  disk {
-    datastore_id = "share"
-    interface    = "scsi1"
-    size         = "100"
-    file_format  = "qcow2"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "false"
   }
 
   network_device {
