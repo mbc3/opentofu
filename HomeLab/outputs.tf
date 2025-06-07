@@ -27,3 +27,8 @@ output "ca_container_password" {
   value     = random_password.ca_container_password.result
   sensitive = true
 }
+
+output "uptime_container_password" {
+  value     = random_password.uptime_container_password.result
+  sensitive = true
+}
