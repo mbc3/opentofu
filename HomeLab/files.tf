@@ -54,6 +54,16 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     backup       = "false"
   }
 
+  disk {
+    datastore_id = "proto"
+    interface    = "scsi2"
+    size         = "800"
+    file_format  = "qcow2"
+    ssd          = "true"
+    discard      = "on"
+    backup       = "false"
+  }
+
   network_device {
     bridge = "vmbr0"
   }
