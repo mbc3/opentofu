@@ -52,3 +52,72 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
     type = "l26"
   }
 }
+
+resource "proxmox_virtual_environment_container" "repos_container" {
+  description = "Repos Container"
+
+  node_name    = var.node_name
+  vm_id        = 110
+  unprivileged = "true"
+  tags         = ["automation"]
+
+  initialization {
+    hostname = "repos"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.7.110/24"
+        gateway = "192.168.7.1"
+      }
+      ipv6 {
+        address = "auto"
+      }
+    }
+
+    dns {
+      domain  = "localdomain"
+      servers = var.dns_servers
+    }
+
+    user_account {
+      password = random_password.repos_container_password.result
+      keys     = [var.ssh_key]
+    }
+  }
+
+  cpu {
+    cores = "2"
+    units = "100" # this is priority of cpu
+  }
+
+  memory {
+    dedicated = "1024"
+    swap      = "512"
+  }
+
+  disk {
+    datastore_id = "local-lvm"
+    size         = "8"
+  }
+
+  network_interface {
+    name     = "eth0"
+    firewall = "true"
+  }
+
+  operating_system {
+    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
+    type             = "centos"
+  }
+
+  startup {
+    order    = "4"
+    up_delay = "2"
+  }
+}
+
+resource "random_password" "repos_container_password" {
+  length           = 16
+  override_special = "_%@"
+  special          = true
+}
