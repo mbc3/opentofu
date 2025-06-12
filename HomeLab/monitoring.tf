@@ -58,7 +58,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 
   startup {
     order    = "1"
-    up_delay = "2"
+    up_delay = "3"
   }
 
 }
@@ -121,8 +121,8 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   startup {
-    order    = "2"
-    up_delay = "2"
+    order    = "1"
+    up_delay = "3"
   }
 
   features {
@@ -191,8 +191,8 @@ resource "proxmox_virtual_environment_container" "uptime_container" {
   }
 
   startup {
-    order    = "4"
-    up_delay = "2"
+    order    = "3"
+    up_delay = "3"
   }
 
   features {

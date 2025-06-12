@@ -14,7 +14,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
 
   startup {
     order    = "2"
-    up_delay = "5"
+    up_delay = "3"
   }
 
   cpu {
