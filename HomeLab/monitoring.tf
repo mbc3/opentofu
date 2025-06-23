@@ -37,7 +37,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   memory {
-    dedicated = "1024"
+    dedicated = "2048"
     swap      = "512"
   }
 
@@ -101,7 +101,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   memory {
-    dedicated = "1024"
+    dedicated = "2048"
     swap      = "512"
   }
 
@@ -127,7 +127,6 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
 
   features {
     nesting = "true"
-    fuse    = "true"
   }
 
 }
