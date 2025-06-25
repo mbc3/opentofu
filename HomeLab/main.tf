@@ -2,17 +2,16 @@ terraform {
   required_providers {
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.78.1"
+      version = "0.78.2"
     }
   }
 
   backend "s3" {
-    bucket = "mbc-homelab-state"
-    key    = "global/s3/terraform.tfstate"
-    region = "us-west-1"
-
-    dynamodb_table = "mbc-homelab-locks"
-    encrypt        = true
+    bucket       = "mbc-homelab-state"
+    key          = "global/s3/terraform.tfstate"
+    region       = "us-west-1"
+    use_lockfile = true
+    encrypt      = true
   }
 }
 
