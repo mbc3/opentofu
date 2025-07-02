@@ -1,3 +1,5 @@
+# Container passwords
+
 # output "test_container_password" {
 #   value     = random_password.test_container_password.result
 #   sensitive = true
@@ -35,5 +37,17 @@ output "uptime_container_password" {
 
 output "repos_container_password" {
   value     = random_password.repos_container_password.result
+  sensitive = true
+}
+
+# User account passwords
+
+output "iphone_account_password" {
+  value     = random_password.iphone_account_password.result
+  sensitive = true
+}
+
+output "iphone_token" {
+  value     = proxmox_virtual_environment_user_token.iphone_token
   sensitive = true
 }
