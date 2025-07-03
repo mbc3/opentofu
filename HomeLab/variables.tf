@@ -28,5 +28,5 @@ variable "search_domain" {
 variable "dns_servers" {
   description = "DNS servers for ipv4 and ipv6"
   type        = list(string)
-  default     = ["192.168.7.101", "192.168.7.106", "2600:6c50:73f:8273:be24:11ff:fe70:1b8c", "2600:6c50:73f:8273:be24:11ff:fe5d:82a1"]
+  default     = ["192.168.7.101", "192.168.7.106", "2600:6c50:73f:8273:be24:11ff:fe9f:90c8", "2600:6c50:73f:8273:be24:11ff:fe4e:9518"]
 }
