@@ -161,22 +161,22 @@ resource "opnsense_unbound_host_override" "mediapi_6" {
   server      = "2600:6c50:73f:8271:f5b0:b18a:216d:c640"
 }
 
-resource "opnsense_unbound_host_override" "repos_4" {
+resource "opnsense_unbound_host_override" "openbao_4" {
   enabled     = true
-  description = "repos ipv4"
+  description = "openbao ipv4"
   type        = "A"
-  hostname    = "repos"
+  hostname    = "openbao"
   domain      = "localdomain"
   server      = "192.168.7.110"
 }
 
-resource "opnsense_unbound_host_override" "repos_6" {
+resource "opnsense_unbound_host_override" "openbao_6" {
   enabled     = true
-  description = "repos ipv6"
+  description = "openbao ipv6"
   type        = "AAAA"
-  hostname    = "repos"
+  hostname    = "openbao"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:feb4:771f"
+  server      = "2600:6c50:73f:8273:be24:11ff:febe:dbba"
 }
 
 resource "opnsense_unbound_host_override" "semaphore_4" {

@@ -35,8 +35,8 @@ output "uptime_container_password" {
   sensitive = true
 }
 
-output "repos_container_password" {
-  value     = random_password.repos_container_password.result
+output "openbao_container_password" {
+  value     = random_password.openbao_container_password.result
   sensitive = true
 }
 

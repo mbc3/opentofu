@@ -53,8 +53,8 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
   }
 }
 
-resource "proxmox_virtual_environment_container" "repos_container" {
-  description = "Repos Container"
+resource "proxmox_virtual_environment_container" "openbao_container" {
+  description = "OpenBao Container"
 
   node_name    = var.node_name
   vm_id        = 110
@@ -62,7 +62,7 @@ resource "proxmox_virtual_environment_container" "repos_container" {
   tags         = ["automation"]
 
   initialization {
-    hostname = "repos"
+    hostname = "openbao"
 
     ip_config {
       ipv4 {
@@ -80,7 +80,7 @@ resource "proxmox_virtual_environment_container" "repos_container" {
     }
 
     user_account {
-      password = random_password.repos_container_password.result
+      password = random_password.openbao_container_password.result
       keys     = [var.ssh_key]
     }
   }
@@ -116,7 +116,7 @@ resource "proxmox_virtual_environment_container" "repos_container" {
   }
 }
 
-resource "random_password" "repos_container_password" {
+resource "random_password" "openbao_container_password" {
   length           = 16
   override_special = "_%@"
   special          = true
