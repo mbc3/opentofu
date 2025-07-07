@@ -197,6 +197,24 @@ resource "opnsense_unbound_host_override" "semaphore_6" {
   server      = "2600:6c50:73f:8273:be24:11ff:fe0b:4495"
 }
 
+resource "opnsense_unbound_host_override" "test_4" {
+  enabled     = true
+  description = "test ipv4"
+  type        = "A"
+  hostname    = "test"
+  domain      = "localdomain"
+  server      = "192.168.7.112"
+}
+
+resource "opnsense_unbound_host_override" "test_6" {
+  enabled     = true
+  description = "test ipv6"
+  type        = "AAAA"
+  hostname    = "test"
+  domain      = "localdomain"
+  server      = "2600:6c50:73f:8273:be24:11ff:fedb:d5b7"
+}
+
 resource "opnsense_unbound_host_override" "services_4" {
   enabled     = true
   description = "services proxmox ipv4"
