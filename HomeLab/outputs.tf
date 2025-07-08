@@ -1,10 +1,5 @@
 # Container passwords
 
-# output "test_container_password" {
-#   value     = random_password.test_container_password.result
-#   sensitive = true
-# }
-
 output "logs_container_password" {
   value     = random_password.logs_container_password.result
   sensitive = true
