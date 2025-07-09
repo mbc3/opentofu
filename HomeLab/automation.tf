@@ -249,6 +249,10 @@ resource "proxmox_virtual_environment_container" "netboot_container" {
     type             = "centos"
   }
 
+  features {
+    nesting = "true"
+  }
+
   startup {
     order    = "4"
     up_delay = "2"
