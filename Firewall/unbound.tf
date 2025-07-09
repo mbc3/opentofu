@@ -125,24 +125,6 @@ resource "opnsense_unbound_host_override" "graphs_6" {
   server      = "2600:6c50:73f:8273:be24:11ff:fe8e:9cf5"
 }
 
-resource "opnsense_unbound_host_override" "foreman_4" {
-  enabled     = true
-  description = "foreman ipv4"
-  type        = "A"
-  hostname    = "foreman"
-  domain      = "localdomain"
-  server      = "192.168.7.113"
-}
-
-resource "opnsense_unbound_host_override" "foreman_6" {
-  enabled     = true
-  description = "foreman ipv6"
-  type        = "AAAA"
-  hostname    = "foreman"
-  domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe47:a806"
-}
-
 resource "opnsense_unbound_host_override" "logs_4" {
   enabled     = true
   description = "logs ipv4"
@@ -177,6 +159,24 @@ resource "opnsense_unbound_host_override" "mediapi_6" {
   hostname    = "mediapi"
   domain      = "localdomain"
   server      = "2600:6c50:73f:8271:f5b0:b18a:216d:c640"
+}
+
+resource "opnsense_unbound_host_override" "netboot_4" {
+  enabled     = true
+  description = "netboot ipv4"
+  type        = "A"
+  hostname    = "netboot"
+  domain      = "localdomain"
+  server      = "192.168.7.113"
+}
+
+resource "opnsense_unbound_host_override" "netboot_6" {
+  enabled     = true
+  description = "netboot ipv6"
+  type        = "AAAA"
+  hostname    = "netboot"
+  domain      = "localdomain"
+  server      = "2600:6c50:73f:8273:be24:11ff:fecf:b301"
 }
 
 resource "opnsense_unbound_host_override" "openbao_4" {
