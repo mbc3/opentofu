@@ -176,7 +176,7 @@ resource "opnsense_unbound_host_override" "netboot_6" {
   type        = "AAAA"
   hostname    = "netboot"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fecf:b301"
+  server      = "2600:6c50:73f:8273:be24:11ff:fe13:bd6f"
 }
 
 resource "opnsense_unbound_host_override" "openbao_4" {
