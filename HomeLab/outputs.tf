@@ -35,6 +35,11 @@ output "openbao_container_password" {
   sensitive = true
 }
 
+output "netboot_container_password" {
+  value     = random_password.netboot_container_password.result
+  sensitive = true
+}
+
 # User account passwords
 
 output "iphone_account_password" {
