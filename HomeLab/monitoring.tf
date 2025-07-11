@@ -101,7 +101,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   memory {
-    dedicated = "2048"
+    dedicated = "1024"
     swap      = "512"
   }
 
