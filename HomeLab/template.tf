@@ -18,6 +18,20 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
     units = "100"
   }
 
+  bios = "ovmf"
+
+  efi_disk {
+    datastore_id      = "local-lvm"
+    file_format       = "raw"
+    type              = "4m"
+    pre_enrolled_keys = false
+  }
+
+  rng {
+    source = "/dev/urandom"
+
+  }
+
   boot_order = ["net0", "scsi0", "ide3"]
   on_boot    = false
 
