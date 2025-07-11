@@ -44,4 +44,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   operating_system {
     type = "l26"
   }
+
+  # set true to start after creation
+  started = false
 }
