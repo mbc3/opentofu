@@ -170,7 +170,7 @@ resource "proxmox_virtual_environment_container" "uptime_container" {
   }
 
   memory {
-    dedicated = "1024"
+    dedicated = "512"
     swap      = "512"
   }
 
