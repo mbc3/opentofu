@@ -60,5 +60,6 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   }
 
   # set true to start after creation
-  started = false
+  started  = false
+  template = true
 }
