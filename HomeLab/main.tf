@@ -18,10 +18,8 @@ terraform {
 provider "proxmox" {
   endpoint  = var.endpoint
   api_token = var.api_token
-
-  # because self-signed TLS certificate is in use
-  insecure = true
-  tmp_dir  = "/var/tmp"
+  insecure  = false # set to true if TLS isn't set up
+  tmp_dir   = "/var/tmp"
 
   ssh {
     agent       = true
