@@ -121,6 +121,62 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
 }
 
 
+
+resource "proxmox_virtual_environment_vm" "netbox_vm" {
+  name        = "netbox"
+  description = "Netbox Server"
+  tags        = ["automation"]
+
+  node_name = var.node_name
+  vm_id     = 114
+
+  agent {
+    enabled = true
+  }
+  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
+  stop_on_destroy = true
+
+  startup {
+    order    = "4"
+    up_delay = "5"
+  }
+
+  cpu {
+    cores = 2
+    type  = "host"
+    units = "100"
+  }
+
+  boot_order = ["scsi0", "net0", "ide3"]
+
+  cdrom {
+    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
+  }
+
+  memory {
+    dedicated = 2048
+    floating  = 2048 # set equal to dedicated to enable ballooning
+  }
+
+  # boot disk
+  disk {
+    datastore_id = "local-lvm"
+    interface    = "scsi0"
+    size         = "20"
+    ssd          = "true"
+    discard      = "on"
+    backup       = "true"
+  }
+
+  network_device {
+    bridge = "vmbr0"
+  }
+
+  operating_system {
+    type = "l26"
+  }
+}
+
 resource "proxmox_virtual_environment_vm" "semaphore_vm" {
   name        = "semaphore"
   description = "Semaphore Server"
