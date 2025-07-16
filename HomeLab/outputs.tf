@@ -46,3 +46,13 @@ output "iphone_token" {
   value     = proxmox_virtual_environment_user_token.iphone_token
   sensitive = true
 }
+
+output "ansible_account_password" {
+  value     = random_password.ansible_account_password.result
+  sensitive = true
+}
+
+output "ansible_token" {
+  value     = proxmox_virtual_environment_user_token.ansible_token
+  sensitive = true
+}
