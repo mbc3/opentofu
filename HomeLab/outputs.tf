@@ -1,3 +1,7 @@
+output "auto" {
+  value = data.proxmox_virtual_environment_vms.auto
+}
+
 # Container passwords
 
 output "logs_container_password" {

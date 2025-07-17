@@ -1,0 +1,1 @@
+/mnt/storage_media/storage/Documents/Programming/IAC/OpenTofu/DNS01/cname.tf
