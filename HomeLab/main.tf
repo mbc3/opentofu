@@ -16,6 +16,6 @@ terraform {
     region                   = "us-west-1"
     use_lockfile             = true
     encrypt                  = true
-    shared_credentials_files = ["~/.aws/credentials"]
+    shared_credentials_files = ["~/.aws/credentials", "/home/semaphore/.aws/credentials"]
   }
 }
