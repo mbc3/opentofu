@@ -1,5 +1,5 @@
 provider "proxmox" {
-  #endpoint = var.endpoint
+  # endpoint = var.endpoint
   # api_token = var.api_token
   endpoint  = data.vault_kv_secret_v2.homelab_tofu.data["endpoint"]
   api_token = data.vault_kv_secret_v2.homelab_tofu.data["api_token"]
@@ -9,7 +9,8 @@ provider "proxmox" {
   ssh {
     agent       = true
     username    = "root"
-    private_key = file("~/.ssh/proxmox")
+    private_key = var.private_ssh_key
+    #private_key = file("~/.ssh/proxmox")
   }
 }
 

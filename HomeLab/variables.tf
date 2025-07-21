@@ -10,6 +10,12 @@ variable "secret_id" {
   sensitive   = true
 }
 
+variable "private_ssh_key" {
+  description = "private ssh key to connect to proxmox"
+  type        = string
+  sensitive   = true
+}
+
 variable "api_token" {
   description = "API token and username for proxmox host"
   type        = string
