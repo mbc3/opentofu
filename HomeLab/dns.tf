@@ -1,7 +1,7 @@
 resource "proxmox_virtual_environment_container" "dns01_container" {
   description = "DNS01 Container"
 
-  node_name    = var.node_name
+  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id        = 101
   unprivileged = "true"
   tags         = ["dns"]
@@ -75,7 +75,7 @@ resource "random_password" "dns01_container_password" {
 resource "proxmox_virtual_environment_container" "dns02_container" {
   description = "DNS02 Container"
 
-  node_name    = var.node_name
+  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id        = 106
   unprivileged = "true"
   tags         = ["dns"]

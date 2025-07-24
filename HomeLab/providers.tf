@@ -9,7 +9,7 @@ provider "proxmox" {
   ssh {
     agent       = true
     username    = "root"
-    private_key = var.private_ssh_key
+    private_key = data.vault_kv_secret_v2.homelab_tofu.data["private_ssh_key"]
     #private_key = file("~/.ssh/proxmox")
   }
 }

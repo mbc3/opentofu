@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "wazuh_vm" {
   description = "Wazuh Server"
   tags        = ["security"]
 
-  node_name = var.node_name
+  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id     = 111
 
   agent {

@@ -70,7 +70,7 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
   description = "Netboot PXE Server"
   tags        = ["automation"]
 
-  node_name = var.node_name
+  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id     = 113
 
   agent {
@@ -127,7 +127,7 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
   description = "Netbox Server"
   tags        = ["automation"]
 
-  node_name = var.node_name
+  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id     = 114
 
   agent {
@@ -182,7 +182,7 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
   description = "Semaphore Server"
   tags        = ["automation"]
 
-  node_name = var.node_name
+  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id     = 108
 
   agent {
@@ -235,7 +235,7 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
 resource "proxmox_virtual_environment_container" "openbao_container" {
   description = "OpenBao Container"
 
-  node_name    = var.node_name
+  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id        = 110
   unprivileged = "true"
   tags         = ["automation"]

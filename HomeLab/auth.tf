@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
   description = "FreeIPA Server"
   tags        = ["auth"]
 
-  node_name = var.node_name
+  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id     = 105
 
   agent {
@@ -56,7 +56,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
 resource "proxmox_virtual_environment_container" "ca_container" {
   description = "CA Container"
 
-  node_name    = var.node_name
+  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id        = 107
   unprivileged = "true"
   tags         = ["auth"]
