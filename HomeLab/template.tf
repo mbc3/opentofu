@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   description = "Template Server"
   tags        = ["test"]
 
-  node_name = var.node_name
+  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   vm_id     = 999
 
   agent {

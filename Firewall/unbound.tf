@@ -13,7 +13,7 @@ resource "opnsense_unbound_host_override" "arch_6" {
   type        = "AAAA"
   hostname    = "arch"
   domain      = "internal"
-  server      = "2600:6c50:73f:8272:e8d8:9395:90ca:8a84"
+  server      = "2600:6c50:77f:af02:78cc:11a:f6eb:84c"
 }
 
 resource "opnsense_unbound_host_override" "ca_4" {
@@ -31,7 +31,7 @@ resource "opnsense_unbound_host_override" "ca_6" {
   type        = "AAAA"
   hostname    = "ca"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:feb8:7a34"
+  server      = "2600:6c50:77f:af03:be24:11ff:feb8:7a34"
 }
 
 resource "opnsense_unbound_host_override" "dns01_4" {
@@ -49,7 +49,7 @@ resource "opnsense_unbound_host_override" "dns01_6" {
   type        = "AAAA"
   hostname    = "dns01"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe9f:90c8"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe9f:90c8"
 }
 
 resource "opnsense_unbound_host_override" "dns02_4" {
@@ -67,7 +67,7 @@ resource "opnsense_unbound_host_override" "dns02_6" {
   type        = "AAAA"
   hostname    = "dns02"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe4e:9518"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe4e:9518"
 }
 
 resource "opnsense_unbound_host_override" "files_4" {
@@ -85,7 +85,7 @@ resource "opnsense_unbound_host_override" "files_6" {
   type        = "AAAA"
   hostname    = "files"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe58:7e8d"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe58:7e8d"
 }
 
 
@@ -104,7 +104,7 @@ resource "opnsense_unbound_host_override" "freeipa_6" {
   type        = "AAAA"
   hostname    = "freeipa"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fefa:1ce5"
+  server      = "2600:6c50:77f:af03:be24:11ff:fefa:1ce5"
 }
 
 resource "opnsense_unbound_host_override" "graphs_4" {
@@ -122,7 +122,7 @@ resource "opnsense_unbound_host_override" "graphs_6" {
   type        = "AAAA"
   hostname    = "graphs"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe8e:9cf5"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe8e:9cf5"
 }
 
 resource "opnsense_unbound_host_override" "logs_4" {
@@ -140,7 +140,7 @@ resource "opnsense_unbound_host_override" "logs_6" {
   type        = "AAAA"
   hostname    = "logs"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fec9:b5df"
+  server      = "2600:6c50:77f:af03:be24:11ff:fec9:b5df"
 }
 
 resource "opnsense_unbound_host_override" "mediapi_4" {
@@ -176,7 +176,7 @@ resource "opnsense_unbound_host_override" "netboot_6" {
   type        = "AAAA"
   hostname    = "netboot"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe13:bd6f"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe13:bd6f"
 }
 
 resource "opnsense_unbound_host_override" "netbox_4" {
@@ -194,7 +194,7 @@ resource "opnsense_unbound_host_override" "netbox_6" {
   type        = "AAAA"
   hostname    = "netbox"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe61:71ab"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe61:71ab"
 }
 
 resource "opnsense_unbound_host_override" "openbao_4" {
@@ -212,7 +212,7 @@ resource "opnsense_unbound_host_override" "openbao_6" {
   type        = "AAAA"
   hostname    = "openbao"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:febe:dbba"
+  server      = "2600:6c50:77f:af03:be24:11ff:febe:dbba"
 }
 
 resource "opnsense_unbound_host_override" "semaphore_4" {
@@ -230,7 +230,7 @@ resource "opnsense_unbound_host_override" "semaphore_6" {
   type        = "AAAA"
   hostname    = "semaphore"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe0b:4495"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe0b:4495"
 }
 
 resource "opnsense_unbound_host_override" "test_4" {
@@ -248,7 +248,7 @@ resource "opnsense_unbound_host_override" "test_6" {
   type        = "AAAA"
   hostname    = "test"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fedb:d5b7"
+  server      = "2600:6c50:77f:af03:be24:11ff:fedb:d5b7"
 }
 
 resource "opnsense_unbound_host_override" "services_4" {
@@ -275,7 +275,7 @@ resource "opnsense_unbound_host_override" "uptime_6" {
   type        = "AAAA"
   hostname    = "uptime"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fe0a:4947"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe0a:4947"
 }
 
 
@@ -294,5 +294,5 @@ resource "opnsense_unbound_host_override" "wazuh_6" {
   type        = "AAAA"
   hostname    = "wazuh"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8273:be24:11ff:fee6:6f79"
+  server      = "2600:6c50:77f:af03:be24:11ff:fee6:6f79"
 }
