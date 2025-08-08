@@ -158,7 +158,7 @@ resource "opnsense_unbound_host_override" "mediapi_6" {
   type        = "AAAA"
   hostname    = "mediapi"
   domain      = "localdomain"
-  server      = "2600:6c50:73f:8271:f5b0:b18a:216d:c640"
+  server      = "2600:6c50:77f:af01:7177:fb33:cbf:6cd8"
 }
 
 resource "opnsense_unbound_host_override" "netboot_4" {
