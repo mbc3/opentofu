@@ -101,13 +101,13 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   memory {
-    dedicated = "512"
+    dedicated = "1024"
     swap      = "512"
   }
 
   disk {
     datastore_id = "local-lvm"
-    size         = "8"
+    size         = "15"
   }
 
   network_interface {
