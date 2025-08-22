@@ -37,12 +37,12 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   memory {
-    dedicated = "1024"
-    swap      = "512"
+    dedicated = "2048"
+    swap      = "1024"
   }
 
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     size         = "15"
   }
 
@@ -66,7 +66,8 @@ resource "proxmox_virtual_environment_container" "logs_container" {
 resource "proxmox_virtual_environment_container" "graphs_container" {
   description = "Graphs Container"
 
-  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name    = var.node_name
   vm_id        = 103
   unprivileged = "true"
   tags         = ["monitoring"]
@@ -101,12 +102,12 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
   }
 
   memory {
-    dedicated = "1024"
-    swap      = "512"
+    dedicated = "2048"
+    swap      = "1024"
   }
 
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     size         = "15"
   }
 
@@ -135,7 +136,8 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
 resource "proxmox_virtual_environment_container" "uptime_container" {
   description = "Uptime Kuma Container"
 
-  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name    = var.node_name
   vm_id        = 109
   unprivileged = "true"
   tags         = ["monitoring"]
@@ -170,13 +172,13 @@ resource "proxmox_virtual_environment_container" "uptime_container" {
   }
 
   memory {
-    dedicated = "512"
-    swap      = "512"
+    dedicated = "2048"
+    swap      = "1024"
   }
 
   disk {
-    datastore_id = "local-lvm"
-    size         = "8"
+    datastore_id = "local-zfs"
+    size         = "15"
   }
 
   network_interface {

@@ -1,7 +1,8 @@
 resource "proxmox_virtual_environment_container" "dns01_container" {
   description = "DNS01 Container"
 
-  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name    = var.node_name
   vm_id        = 101
   unprivileged = "true"
   tags         = ["dns"]
@@ -40,7 +41,7 @@ resource "proxmox_virtual_environment_container" "dns01_container" {
   }
 
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     size         = "15"
   }
 
@@ -58,11 +59,6 @@ resource "proxmox_virtual_environment_container" "dns01_container" {
     order    = "1"
     up_delay = "1"
   }
-
-  features {
-    nesting = "true"
-  }
-
 }
 
 resource "random_password" "dns01_container_password" {
@@ -75,7 +71,8 @@ resource "random_password" "dns01_container_password" {
 resource "proxmox_virtual_environment_container" "dns02_container" {
   description = "DNS02 Container"
 
-  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name    = var.node_name
   vm_id        = 106
   unprivileged = "true"
   tags         = ["dns"]
@@ -114,7 +111,7 @@ resource "proxmox_virtual_environment_container" "dns02_container" {
   }
 
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     size         = "15"
   }
 
@@ -132,11 +129,6 @@ resource "proxmox_virtual_environment_container" "dns02_container" {
     order    = "1"
     up_delay = "1"
   }
-
-  features {
-    nesting = "true"
-  }
-
 }
 
 resource "random_password" "dns02_container_password" {

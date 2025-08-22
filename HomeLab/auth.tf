@@ -3,7 +3,8 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
   description = "FreeIPA Server"
   tags        = ["auth"]
 
-  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name = var.node_name
   vm_id     = 105
 
   agent {
@@ -23,11 +24,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "ide3", "net0"]
-
-  cdrom {
-    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
-  }
+  boot_order = ["scsi0", "net0"]
 
   memory {
     dedicated = 2048
@@ -36,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
 
   # boot disk
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     interface    = "scsi0"
     size         = "20"
     ssd          = "true"
@@ -56,7 +53,8 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
 resource "proxmox_virtual_environment_container" "ca_container" {
   description = "CA Container"
 
-  node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name    = var.node_name
   vm_id        = 107
   unprivileged = "true"
   tags         = ["auth"]
@@ -91,12 +89,12 @@ resource "proxmox_virtual_environment_container" "ca_container" {
   }
 
   memory {
-    dedicated = "512"
-    swap      = "512"
+    dedicated = "2048"
+    swap      = "1024"
   }
 
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     size         = "15"
   }
 

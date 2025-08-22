@@ -9,11 +9,11 @@ resource "proxmox_virtual_environment_group" "MON" {
 }
 
 resource "proxmox_virtual_environment_group" "INFRA" {
-  comment  = "Infrastructure Service Accounts"
+  comment  = "Infrastructure Accounts"
   group_id = "INFRA"
   acl {
     path      = "/"
     propagate = true
-    role_id   = "PVEVMAdmin"
+    role_id   = "Administrator"
   }
 }

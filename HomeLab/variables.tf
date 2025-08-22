@@ -30,6 +30,7 @@ variable "endpoint" {
 variable "node_name" {
   description = "Name of the node in Proxmox cluster"
   type        = string
+  default     = "services"
 }
 
 variable "ssh_key" {

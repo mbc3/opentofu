@@ -3,7 +3,8 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   description = "File Server"
   tags        = ["files"]
 
-  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name = var.node_name
   vm_id     = 104
 
   agent {
@@ -23,11 +24,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "ide3", "net0"]
-
-  cdrom {
-    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
-  }
+  boot_order = ["scsi0", "net0"]
 
   memory {
     dedicated = 4096
@@ -36,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
 
   # boot disk
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     interface    = "scsi0"
     size         = "20"
     ssd          = "true"
@@ -45,23 +42,13 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   }
 
   disk {
-    datastore_id = "share"
+    datastore_id = "local-zfs"
     interface    = "scsi1"
-    size         = "100"
-    file_format  = "qcow2"
+    size         = "200"
+    file_format  = "raw"
     ssd          = "true"
     discard      = "on"
-    backup       = "false"
-  }
-
-  disk {
-    datastore_id = "proto"
-    interface    = "scsi2"
-    size         = "800"
-    file_format  = "qcow2"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "false"
+    backup       = "true"
   }
 
   network_device {

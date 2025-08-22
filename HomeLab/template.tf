@@ -3,7 +3,8 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   description = "Template Server"
   tags        = ["test"]
 
-  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name = var.node_name
   vm_id     = 999
 
   agent {
@@ -21,7 +22,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   bios = "ovmf"
 
   efi_disk {
-    datastore_id      = "local-lvm"
+    datastore_id      = "local-zfs"
     file_format       = "raw"
     type              = "4m"
     pre_enrolled_keys = false
@@ -32,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
 
   }
 
-  boot_order = ["net0", "scsi0", "ide3"]
+  boot_order = ["net0", "ide3"]
   on_boot    = false
 
   memory {
@@ -42,7 +43,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
 
   # boot disk
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     interface    = "scsi0"
     size         = "20"
     ssd          = "true"

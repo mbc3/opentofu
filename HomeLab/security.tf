@@ -3,7 +3,8 @@ resource "proxmox_virtual_environment_vm" "wazuh_vm" {
   description = "Wazuh Server"
   tags        = ["security"]
 
-  node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
+  node_name = var.node_name
   vm_id     = 111
 
   agent {
@@ -23,11 +24,7 @@ resource "proxmox_virtual_environment_vm" "wazuh_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "ide3", "net0"]
-
-  cdrom {
-    file_id = "local:iso/AlmaLinux-9.5-x86_64-minimal.iso"
-  }
+  boot_order = ["scsi0", "net0"]
 
   memory {
     dedicated = 8192
@@ -36,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "wazuh_vm" {
 
   # boot disk
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local-zfs"
     interface    = "scsi0"
     size         = "50"
     ssd          = "true"
