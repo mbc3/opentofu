@@ -24,13 +24,14 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "net0"]
-
 
   memory {
-    dedicated = 4096
-    floating  = 4096 # set equal to dedicated to enable ballooning
+    dedicated = 2048
+    floating  = 2048 # set equal to dedicated to enable ballooning
   }
+
+  boot_order = ["scsi0", "net0"]
+  # bios = "ovmf"
 
   # boot disk
   disk {
@@ -42,6 +43,13 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
     backup       = "true"
   }
 
+  # efi_disk {
+  #   datastore_id      = "local-zfs"
+  #   file_format       = "raw"
+  #   type              = "4m"
+  #   pre_enrolled_keys = false
+  # }
+
   network_device {
     bridge = "vmbr0"
   }
@@ -50,8 +58,6 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
     type = "l26"
   }
 }
-
-
 
 resource "proxmox_virtual_environment_vm" "netbox_vm" {
   name        = "netbox"
@@ -79,12 +85,13 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "net0"]
-
   memory {
     dedicated = 2048
     floating  = 2048 # set equal to dedicated to enable ballooning
   }
+
+  boot_order = ["scsi0", "net0"]
+  # bios       = "ovmf"
 
   # boot disk
   disk {
@@ -95,6 +102,13 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
     discard      = "on"
     backup       = "true"
   }
+
+  # efi_disk {
+  #   datastore_id      = "local-zfs"
+  #   file_format       = "raw"
+  #   type              = "4m"
+  #   pre_enrolled_keys = false
+  # }
 
   network_device {
     bridge = "vmbr0"
@@ -131,12 +145,13 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "net0"]
-
   memory {
     dedicated = 4096
     floating  = 4096 # set equal to dedicated to enable ballooning
   }
+
+  boot_order = ["scsi0", "net0"]
+  # bios       = "ovmf"
 
   # boot disk
   disk {
@@ -147,6 +162,13 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
     discard      = "on"
     backup       = "true"
   }
+
+  # efi_disk {
+  #   datastore_id      = "local-zfs"
+  #   file_format       = "raw"
+  #   type              = "4m"
+  #   pre_enrolled_keys = false
+  # }
 
   network_device {
     bridge = "vmbr0"

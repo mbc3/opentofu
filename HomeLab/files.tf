@@ -24,12 +24,13 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     units = "100"
   }
 
-  boot_order = ["scsi0", "net0"]
-
   memory {
     dedicated = 4096
     floating  = 4096 # set equal to dedicated to enable ballooning
   }
+
+  boot_order = ["scsi0", "net0"]
+  # bios       = "ovmf"
 
   # boot disk
   disk {
@@ -50,6 +51,13 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     discard      = "on"
     backup       = "true"
   }
+
+  # efi_disk {
+  #   datastore_id      = "local-zfs"
+  #   file_format       = "raw"
+  #   type              = "4m"
+  #   pre_enrolled_keys = false
+  # }
 
   network_device {
     bridge = "vmbr0"
