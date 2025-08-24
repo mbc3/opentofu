@@ -66,4 +66,6 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   operating_system {
     type = "l26"
   }
+
+  serial_device {}
 }
