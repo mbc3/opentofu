@@ -48,6 +48,8 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
   operating_system {
     type = "l26"
   }
+
+  serial_device {}
 }
 
 resource "proxmox_virtual_environment_container" "ca_container" {

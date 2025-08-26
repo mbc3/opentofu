@@ -57,6 +57,8 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
   operating_system {
     type = "l26"
   }
+
+  serial_device {}
 }
 
 resource "proxmox_virtual_environment_vm" "netbox_vm" {
@@ -117,6 +119,8 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
   operating_system {
     type = "l26"
   }
+
+  serial_device {}
 }
 
 resource "proxmox_virtual_environment_vm" "semaphore_vm" {
@@ -177,6 +181,8 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
   operating_system {
     type = "l26"
   }
+
+  serial_device {}
 }
 
 resource "proxmox_virtual_environment_container" "openbao_container" {

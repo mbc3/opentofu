@@ -48,4 +48,6 @@ resource "proxmox_virtual_environment_vm" "wazuh_vm" {
   operating_system {
     type = "l26"
   }
+
+  serial_device {}
 }
