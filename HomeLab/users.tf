@@ -15,7 +15,7 @@ resource "proxmox_virtual_environment_user" "iphone" {
   comment  = "iPhone User"
   password = random_password.iphone_account_password.result
   user_id  = "iphone@pve"
-  groups   = ["MON"]
+  groups   = ["MON", "VM"]
 }
 
 

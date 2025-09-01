@@ -17,3 +17,13 @@ resource "proxmox_virtual_environment_group" "INFRA" {
     role_id   = "Administrator"
   }
 }
+
+resource "proxmox_virtual_environment_group" "VM" {
+  comment  = "accounts with VM access"
+  group_id = "VM"
+  acl {
+    path      = "/"
+    propagate = true
+    role_id   = "PVEVMAdmin"
+  }
+}
