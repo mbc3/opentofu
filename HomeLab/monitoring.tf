@@ -108,7 +108,7 @@ resource "proxmox_virtual_environment_container" "graphs_container" {
 
   disk {
     datastore_id = "local-zfs"
-    size         = "15"
+    size         = "30"
   }
 
   network_interface {
