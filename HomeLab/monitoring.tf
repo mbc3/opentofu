@@ -198,6 +198,7 @@ resource "proxmox_virtual_environment_container" "uptime_container" {
 
   features {
     nesting = "true"
+    keyctl  = "true"
   }
 }
 
