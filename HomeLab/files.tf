@@ -45,7 +45,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi1"
-    size         = "200"
+    size         = "250"
     file_format  = "raw"
     ssd          = "true"
     discard      = "on"
