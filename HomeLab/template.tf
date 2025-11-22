@@ -7,6 +7,9 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   node_name = var.node_name
   vm_id     = 999
 
+  delete_unreferenced_disks_on_destroy = true
+  purge_on_destroy                     = true
+
   agent {
     enabled = false
   }

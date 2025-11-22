@@ -7,6 +7,9 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
   node_name = var.node_name
   vm_id     = 113
 
+  delete_unreferenced_disks_on_destroy = true
+  purge_on_destroy                     = true
+
   agent {
     enabled = true
   }
@@ -70,6 +73,9 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
   node_name = var.node_name
   vm_id     = 114
 
+  delete_unreferenced_disks_on_destroy = true
+  purge_on_destroy                     = true
+
   agent {
     enabled = true
   }
@@ -131,6 +137,9 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
   #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
   node_name = var.node_name
   vm_id     = 108
+
+  delete_unreferenced_disks_on_destroy = true
+  purge_on_destroy                     = true
 
   agent {
     enabled = true

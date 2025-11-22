@@ -7,6 +7,9 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   node_name = var.node_name
   vm_id     = 104
 
+  delete_unreferenced_disks_on_destroy = true
+  purge_on_destroy                     = true
+
   agent {
     enabled = true
   }
