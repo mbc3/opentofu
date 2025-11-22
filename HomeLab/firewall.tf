@@ -13,7 +13,7 @@ resource "proxmox_virtual_environment_cluster_firewall" "datacenter-level" {
 }
 
 resource "proxmox_virtual_environment_cluster_firewall_security_group" "block_web" {
-  name    = "Block Web"
+  name    = "block_web"
   comment = "Managed by OpenTofu"
 
   rule {
