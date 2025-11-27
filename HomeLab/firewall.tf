@@ -25,3 +25,10 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "block_we
     log     = "info"
   }
 }
+
+resource "proxmox_virtual_environment_firewall_alias" "local_network" {
+
+  name    = "local_network"
+  cidr    = "192.168.0.0/16"
+  comment = "Managed by Terraform"
+}
