@@ -257,7 +257,7 @@ resource "opnsense_unbound_host_override" "uptime_6" {
   type        = "AAAA"
   hostname    = "uptime"
   domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fe0a:4947"
+  server      = "2600:6c50:77f:af03:be24:11ff:fec2:fc6c"
 }
 
 
