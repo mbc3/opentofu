@@ -107,6 +107,21 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_ta
   }
 }
 
+
+resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_metrics" {
+  name    = "allow_metrics"
+  comment = "Required rules for scraping metrics for Prometheus"
+
+  rule {
+    type    = "in"
+    action  = "ACCEPT"
+    comment = "Allow prometheus node exporter port"
+    dport   = "9100"
+    proto   = "tcp"
+    log     = "nolog"
+  }
+}
+
 resource "proxmox_virtual_environment_cluster_firewall_security_group" "block_web" {
   name    = "block_web"
   comment = "Block outbound http/https"
@@ -160,6 +175,11 @@ resource "proxmox_virtual_environment_firewall_rules" "dc" {
   }
   rule {
     security_group = proxmox_virtual_environment_cluster_firewall_security_group.allow_tailscale.name
+    comment        = "Managed by OpenTofu"
+    enabled        = true
+  }
+  rule {
+    security_group = proxmox_virtual_environment_cluster_firewall_security_group.allow_metrics.name
     comment        = "Managed by OpenTofu"
     enabled        = true
   }
