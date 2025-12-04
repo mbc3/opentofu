@@ -21,7 +21,6 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_px
     comment = "Allow pxmx web interface"
     dport   = "443,8006"
     proto   = "tcp"
-    source  = "+local"
     log     = "nolog"
   }
   rule {
@@ -30,7 +29,6 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_px
     comment = "Allow SSH"
     dport   = "22"
     proto   = "tcp"
-    source  = "+local"
     log     = "info"
   }
   rule {
@@ -78,7 +76,6 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_px
     action  = "ACCEPT"
     comment = "Allow ping"
     proto   = "icmp"
-    source  = "+local"
     log     = "nolog"
   }
 }
@@ -93,7 +90,6 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_ta
     comment = "Allow tailscale udp port"
     dport   = "41641"
     proto   = "udp"
-    source  = "+local"
     log     = "info"
   }
 
@@ -158,6 +154,24 @@ resource "proxmox_virtual_environment_firewall_ipset" "ipset" {
   cidr {
     name    = "10.10.10.0/24"
     comment = "Wireguard home"
+  }
+
+
+}
+
+resource "proxmox_virtual_environment_firewall_ipset" "ipset_6" {
+
+  name    = "local6"
+  comment = "Local IPs IPv6"
+
+  cidr {
+    name    = "2600:6c50:77f:af0::/60"
+    comment = "Local Network IPv6"
+  }
+
+  cidr {
+    name    = "2600:6c50:77f:af0f::/64"
+    comment = "Wireguard home IPv6"
   }
 }
 
