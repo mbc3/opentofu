@@ -242,6 +242,15 @@ resource "opnsense_unbound_host_override" "services_4" {
   server      = "192.168.7.20"
 }
 
+resource "opnsense_unbound_host_override" "services_6" {
+  enabled     = true
+  description = "services proxmox ipv6"
+  type        = "AAAA"
+  hostname    = "services"
+  domain      = "localdomain"
+  server      = "2600:6c50:77f:af03::720"
+}
+
 resource "opnsense_unbound_host_override" "uptime_4" {
   enabled     = true
   description = "uptime ipv4"
