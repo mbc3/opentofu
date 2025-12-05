@@ -78,6 +78,13 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_px
     proto   = "icmp"
     log     = "nolog"
   }
+  rule {
+    type    = "in"
+    action  = "ACCEPT"
+    comment = "Allow ping ipv6"
+    proto   = "ipv6-icmp"
+    log     = "nolog"
+  }
 }
 
 resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_tailscale" {
