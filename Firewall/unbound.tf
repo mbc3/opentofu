@@ -1,6 +1,6 @@
 resource "opnsense_unbound_host_override" "arch_4" {
   enabled     = true
-  description = "mbc arch desktop ipv4"
+  description = "arch ipv4"
   type        = "A"
   hostname    = "arch"
   domain      = "internal"
@@ -9,7 +9,7 @@ resource "opnsense_unbound_host_override" "arch_4" {
 
 resource "opnsense_unbound_host_override" "arch_6" {
   enabled     = true
-  description = "mbc arch desktop ipv6"
+  description = "arch ipv6"
   type        = "AAAA"
   hostname    = "arch"
   domain      = "internal"
