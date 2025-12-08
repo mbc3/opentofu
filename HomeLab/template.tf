@@ -36,7 +36,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
 
   }
 
-  boot_order = ["net0", "ide3"]
+  boot_order = ["net0", "scsi0"]
   on_boot    = false
 
   memory {
