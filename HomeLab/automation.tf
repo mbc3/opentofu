@@ -37,6 +37,7 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
   # bios = "ovmf"
 
   # boot disk
+  scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
@@ -44,6 +45,7 @@ resource "proxmox_virtual_environment_vm" "netboot_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
+    iothread     = "true"
   }
 
   # efi_disk {
@@ -102,6 +104,7 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
   # bios       = "ovmf"
 
   # boot disk
+  scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
@@ -109,6 +112,7 @@ resource "proxmox_virtual_environment_vm" "netbox_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
+    iothread     = "true"
   }
 
   # efi_disk {
@@ -167,6 +171,7 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
   # bios       = "ovmf"
 
   # boot disk
+  scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
@@ -174,6 +179,7 @@ resource "proxmox_virtual_environment_vm" "semaphore_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
+    iothread     = "true"
   }
 
   # efi_disk {

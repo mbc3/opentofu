@@ -35,6 +35,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
   }
 
   # boot disk
+  scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
@@ -42,6 +43,7 @@ resource "proxmox_virtual_environment_vm" "freeipa_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
+    iothread     = "true"
   }
 
   network_device {

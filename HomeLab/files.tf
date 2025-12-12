@@ -36,6 +36,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
   # bios       = "ovmf"
 
   # boot disk
+  scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
@@ -43,6 +44,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
+    iothread     = "true"
   }
 
   disk {
@@ -53,6 +55,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     ssd          = "true"
     discard      = "on"
     backup       = "true"
+    iothread     = "true"
   }
 
   # efi_disk {
