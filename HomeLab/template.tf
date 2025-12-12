@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   purge_on_destroy                     = true
 
   agent {
-    enabled = false
+    enabled = true
   }
   # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
   stop_on_destroy = true
@@ -45,6 +45,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   }
 
   # boot disk
+  scsi_hardware = "virtio-scsi-single"
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
@@ -53,7 +54,9 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
     discard      = "on"
     backup       = "true"
     file_format  = "raw"
+    iothread     = "true"
   }
+
 
   network_device {
     bridge = "vmbr0"
@@ -62,6 +65,7 @@ resource "proxmox_virtual_environment_vm" "template_vm" {
   operating_system {
     type = "l26"
   }
+
 
   # set true to start after creation
   started  = false
