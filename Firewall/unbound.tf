@@ -140,7 +140,7 @@ resource "opnsense_unbound_host_override" "hosted_6" {
   type        = "AAAA"
   hostname    = "hosted"
   domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fe3f:63f"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe3f:63f8"
 }
 
 resource "opnsense_unbound_host_override" "logs_4" {
