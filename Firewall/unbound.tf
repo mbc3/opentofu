@@ -125,6 +125,24 @@ resource "opnsense_unbound_host_override" "graphs_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:fe8e:9cf5"
 }
 
+resource "opnsense_unbound_host_override" "hosted_4" {
+  enabled     = true
+  description = "hosted ipv4"
+  type        = "A"
+  hostname    = "hosted"
+  domain      = "localdomain"
+  server      = "192.168.7.115"
+}
+
+resource "opnsense_unbound_host_override" "hosted_6" {
+  enabled     = true
+  description = "hosted ipv6"
+  type        = "AAAA"
+  hostname    = "hosted"
+  domain      = "localdomain"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe3f:63f"
+}
+
 resource "opnsense_unbound_host_override" "logs_4" {
   enabled     = true
   description = "logs ipv4"
