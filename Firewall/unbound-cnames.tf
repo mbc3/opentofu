@@ -53,6 +53,24 @@ resource "opnsense_unbound_host_alias" "box6" {
   description = "Box IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "cooking4" {
+  override = opnsense_unbound_host_override.hosted_4.id
+
+  enabled     = true
+  hostname    = "cooking"
+  domain      = "hosted.localdomain"
+  description = "Cooking IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "cooking6" {
+  override = opnsense_unbound_host_override.hosted_6.id
+
+  enabled     = true
+  hostname    = "cooking"
+  domain      = "hosted.localdomain"
+  description = "Cooking IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "auth4" {
   override = opnsense_unbound_host_override.freeipa_4.id
 
