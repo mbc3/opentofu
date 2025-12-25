@@ -146,26 +146,7 @@ resource "opnsense_unbound_host_alias" "run6" {
   description = "Run IPv6"
 }
 
-resource "opnsense_unbound_host_alias" "search4" {
-  override = opnsense_unbound_host_override.mediapi_4.id
-
-  enabled     = true
-  hostname    = "search"
-  domain      = "mediapi.localdomain"
-  description = "Search IPv4"
-}
-
-
-resource "opnsense_unbound_host_alias" "search6" {
-  override = opnsense_unbound_host_override.mediapi_6.id
-
-  enabled     = true
-  hostname    = "search"
-  domain      = "mediapi.localdomain"
-  description = "Search IPv6"
-}
-
-resource "opnsense_unbound_host_alias" "search_hosted4" {
+resource "opnsense_unbound_host_alias" "search_4" {
   override = opnsense_unbound_host_override.hosted_4.id
 
   enabled     = true
@@ -174,8 +155,7 @@ resource "opnsense_unbound_host_alias" "search_hosted4" {
   description = "Search IPv4"
 }
 
-
-resource "opnsense_unbound_host_alias" "search_hosted6" {
+resource "opnsense_unbound_host_alias" "search_6" {
   override = opnsense_unbound_host_override.hosted_6.id
 
   enabled     = true
