@@ -165,6 +165,25 @@ resource "opnsense_unbound_host_alias" "search6" {
   description = "Search IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "search_hosted4" {
+  override = opnsense_unbound_host_override.hosted_4.id
+
+  enabled     = true
+  hostname    = "search"
+  domain      = "hosted.localdomain"
+  description = "Search IPv4"
+}
+
+
+resource "opnsense_unbound_host_alias" "search_hosted6" {
+  override = opnsense_unbound_host_override.hosted_6.id
+
+  enabled     = true
+  hostname    = "search"
+  domain      = "hosted.localdomain"
+  description = "Search IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "syncthing4" {
   override = opnsense_unbound_host_override.files_4.id
 
