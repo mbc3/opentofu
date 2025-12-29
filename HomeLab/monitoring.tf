@@ -37,7 +37,7 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   memory {
-    dedicated = "2048"
+    dedicated = "512"
     swap      = "1024"
   }
 
@@ -52,8 +52,8 @@ resource "proxmox_virtual_environment_container" "logs_container" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
-    type             = "centos"
+    template_file_id = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+    type             = "debian"
   }
 
   startup {
