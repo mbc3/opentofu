@@ -122,7 +122,7 @@ resource "opnsense_unbound_host_override" "graphs_6" {
   type        = "AAAA"
   hostname    = "graphs"
   domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fe8e:9cf5"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe11:736"
 }
 
 resource "opnsense_unbound_host_override" "hosted_4" {

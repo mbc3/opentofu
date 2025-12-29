@@ -23,11 +23,6 @@ output "logs_container_password" {
   sensitive = true
 }
 
-output "graphs_container_password" {
-  value     = random_password.graphs_container_password.result
-  sensitive = true
-}
-
 output "dns01_container_password" {
   value     = random_password.dns01_container_password.result
   sensitive = true

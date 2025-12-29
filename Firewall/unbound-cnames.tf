@@ -90,6 +90,25 @@ resource "opnsense_unbound_host_alias" "auth6" {
   description = "Auth IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "grafana4" {
+  override = opnsense_unbound_host_override.graphs_4.id
+
+  enabled     = true
+  hostname    = "grafana"
+  domain      = "graphs.localdomain"
+  description = "Grafana IPv4"
+}
+
+
+resource "opnsense_unbound_host_alias" "grafana6" {
+  override = opnsense_unbound_host_override.freeipa_6.id
+
+  enabled     = true
+  hostname    = "grafana"
+  domain      = "graphs.localdomain"
+  description = "Grafana IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "images4" {
   override = opnsense_unbound_host_override.mediapi_4.id
 
@@ -126,6 +145,25 @@ resource "opnsense_unbound_host_alias" "pdf6" {
   hostname    = "pdf"
   domain      = "mediapi.localdomain"
   description = "PDF IPv6"
+}
+
+resource "opnsense_unbound_host_alias" "prometheus4" {
+  override = opnsense_unbound_host_override.graphs_4.id
+
+  enabled     = true
+  hostname    = "prometheus"
+  domain      = "graphs.localdomain"
+  description = "Prometheus IPv4"
+}
+
+
+resource "opnsense_unbound_host_alias" "prometheus6" {
+  override = opnsense_unbound_host_override.graphs_6.id
+
+  enabled     = true
+  hostname    = "prometheus"
+  domain      = "graphs.localdomain"
+  description = "Prometheus IPv6"
 }
 
 resource "opnsense_unbound_host_alias" "run4" {
