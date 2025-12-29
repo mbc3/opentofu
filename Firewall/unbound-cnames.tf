@@ -101,7 +101,7 @@ resource "opnsense_unbound_host_alias" "grafana4" {
 
 
 resource "opnsense_unbound_host_alias" "grafana6" {
-  override = opnsense_unbound_host_override.freeipa_6.id
+  override = opnsense_unbound_host_override.graphs_6.id
 
   enabled     = true
   hostname    = "grafana"
