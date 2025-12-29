@@ -143,7 +143,7 @@ resource "opnsense_unbound_host_alias" "loki6" {
   enabled     = true
   hostname    = "loki"
   domain      = "logs.localdomain"
-  description = "Logs IPv6"
+  description = "Loki IPv6"
 }
 
 resource "opnsense_unbound_host_alias" "pdf4" {
