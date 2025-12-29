@@ -18,11 +18,6 @@
 # Container Passwords
 #####################
 
-output "logs_container_password" {
-  value     = random_password.logs_container_password.result
-  sensitive = true
-}
-
 output "dns01_container_password" {
   value     = random_password.dns01_container_password.result
   sensitive = true

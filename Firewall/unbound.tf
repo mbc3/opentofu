@@ -158,7 +158,7 @@ resource "opnsense_unbound_host_override" "logs_6" {
   type        = "AAAA"
   hostname    = "logs"
   domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fec9:b5df"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe93:9d4c"
 }
 
 resource "opnsense_unbound_host_override" "mediapi_4" {
