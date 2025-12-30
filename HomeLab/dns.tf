@@ -55,6 +55,10 @@ resource "proxmox_virtual_environment_container" "dns01_container" {
     type             = "debian"
   }
 
+  features {
+    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
+  }
+
   startup {
     order    = "1"
     up_delay = "1"
@@ -123,6 +127,10 @@ resource "proxmox_virtual_environment_container" "dns02_container" {
   operating_system {
     template_file_id = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
     type             = "debian"
+  }
+
+  features {
+    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
   }
 
   startup {
