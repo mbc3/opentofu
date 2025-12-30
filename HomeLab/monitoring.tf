@@ -1,71 +1,3 @@
-resource "proxmox_virtual_environment_container" "uptime_container" {
-  description = "Uptime Kuma Container"
-
-  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name    = var.node_name
-  vm_id        = 109
-  unprivileged = "true"
-  tags         = ["monitoring"]
-
-  initialization {
-    hostname = "uptime"
-
-    ip_config {
-      ipv4 {
-        address = "192.168.7.109/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-
-    dns {
-      domain  = "localdomain"
-      servers = var.dns_servers
-    }
-
-    user_account {
-      password = random_password.uptime_container_password.result
-      keys     = [var.ssh_key]
-    }
-  }
-
-  cpu {
-    cores = "2"
-    units = "100" # this is priority of cpu
-  }
-
-  memory {
-    dedicated = "512"
-    swap      = "1024"
-  }
-
-  disk {
-    datastore_id = "local-zfs"
-    size         = "15"
-  }
-
-  network_interface {
-    name     = "eth0"
-    firewall = "true"
-  }
-
-  operating_system {
-    template_file_id = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
-    type             = "debian"
-  }
-
-  startup {
-    order    = "3"
-    up_delay = "3"
-  }
-
-  features {
-    nesting = "true"
-  }
-}
-
 resource "proxmox_virtual_environment_vm" "graphs_vm" {
   name        = "graphs"
   description = "Graphs Server"
@@ -205,10 +137,4 @@ resource "proxmox_virtual_environment_vm" "logs_vm" {
   }
 
   serial_device {}
-}
-
-resource "random_password" "uptime_container_password" {
-  length           = 16
-  override_special = "_%@"
-  special          = true
 }

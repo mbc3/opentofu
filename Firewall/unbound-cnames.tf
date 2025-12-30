@@ -279,20 +279,20 @@ resource "opnsense_unbound_host_alias" "torrent6" {
 }
 
 resource "opnsense_unbound_host_alias" "up4" {
-  override = opnsense_unbound_host_override.uptime_4.id
+  override = opnsense_unbound_host_override.hosted_4.id
 
   enabled     = true
   hostname    = "up"
-  domain      = "uptime.localdomain"
+  domain      = "hosted.localdomain"
   description = "Up IPv4"
 }
 
 
 resource "opnsense_unbound_host_alias" "uptime6" {
-  override = opnsense_unbound_host_override.uptime_6.id
+  override = opnsense_unbound_host_override.hosted_6.id
 
   enabled     = true
   hostname    = "up"
-  domain      = "uptime.localdomain"
+  domain      = "hosted.localdomain"
   description = "Up IPv6"
 }

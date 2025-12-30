@@ -269,25 +269,6 @@ resource "opnsense_unbound_host_override" "services_6" {
   server      = "2600:6c50:77f:af03::720"
 }
 
-resource "opnsense_unbound_host_override" "uptime_4" {
-  enabled     = true
-  description = "uptime ipv4"
-  type        = "A"
-  hostname    = "uptime"
-  domain      = "localdomain"
-  server      = "192.168.7.109"
-}
-
-resource "opnsense_unbound_host_override" "uptime_6" {
-  enabled     = true
-  description = "uptime ipv6"
-  type        = "AAAA"
-  hostname    = "uptime"
-  domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fec2:fc6c"
-}
-
-
 resource "opnsense_unbound_host_override" "wazuh_4" {
   enabled     = true
   description = "wazuh ipv4"
