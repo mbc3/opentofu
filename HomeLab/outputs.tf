@@ -38,6 +38,11 @@ output "openbao_container_password" {
   sensitive = true
 }
 
+output "proxy_container_password" {
+  value     = random_password.proxy_container_password.result
+  sensitive = true
+}
+
 ###################
 # Account Passwords
 ###################

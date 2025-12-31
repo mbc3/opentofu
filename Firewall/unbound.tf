@@ -233,6 +233,24 @@ resource "opnsense_unbound_host_override" "openbao_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:febe:dbba"
 }
 
+resource "opnsense_unbound_host_override" "proxy_4" {
+  enabled     = true
+  description = "proxy ipv4"
+  type        = "A"
+  hostname    = "proxy"
+  domain      = "localdomain"
+  server      = "192.168.7.116"
+}
+
+resource "opnsense_unbound_host_override" "proxy_6" {
+  enabled     = true
+  description = "proxy ipv6"
+  type        = "AAAA"
+  hostname    = "proxy"
+  domain      = "localdomain"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe83:b669"
+}
+
 resource "opnsense_unbound_host_override" "semaphore_4" {
   enabled     = true
   description = "semaphore ipv4"
