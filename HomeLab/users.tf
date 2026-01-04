@@ -27,6 +27,14 @@ resource "proxmox_virtual_environment_user" "ansible" {
   groups   = ["MON"]
 }
 
+resource "proxmox_virtual_environment_user" "exporter" {
+
+  comment  = "PVE Exporter User"
+  password = random_password.ansible_account_password.result
+  user_id  = "exporter@pve"
+  groups   = ["MON"]
+}
+
 ###################
 # Account Passwords
 ###################
@@ -49,6 +57,12 @@ resource "random_password" "mbc_account_password" {
   special          = true
 }
 
+resource "random_password" "exporter_account_password" {
+  length           = 24
+  override_special = "!@#$%&*"
+  special          = true
+}
+
 
 ###################
 # API Tokens
@@ -60,3 +74,10 @@ resource "random_password" "mbc_account_password" {
 #   user_id               = proxmox_virtual_environment_user.ansible.user_id
 #   privileges_separation = false
 # }
+#
+resource "proxmox_virtual_environment_user_token" "exporter_token" {
+  comment               = "Exporter"
+  token_name            = "exporter"
+  user_id               = proxmox_virtual_environment_user.exporter.user_id
+  privileges_separation = false
+}

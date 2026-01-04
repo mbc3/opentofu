@@ -62,6 +62,11 @@ output "mbc_account_password" {
   sensitive = true
 }
 
+output "exporter_account_password" {
+  value     = random_password.exporter_account_password.result
+  sensitive = true
+}
+
 ###################
 # API Tokens
 ###################
@@ -70,3 +75,8 @@ output "mbc_account_password" {
 #   value     = proxmox_virtual_environment_user_token.ansible_token
 #   sensitive = true
 # }
+
+output "exporter_token" {
+  value     = proxmox_virtual_environment_user_token.exporter_token
+  sensitive = true
+}
