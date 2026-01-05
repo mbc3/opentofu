@@ -68,16 +68,16 @@ resource "random_password" "exporter_account_password" {
 # API Tokens
 ###################
 
-# resource "proxmox_virtual_environment_user_token" "ansible_token" {
-#   comment               = "Ansible User Token"
-#   token_name            = "ansible"
-#   user_id               = proxmox_virtual_environment_user.ansible.user_id
-#   privileges_separation = false
-# }
-#
 resource "proxmox_virtual_environment_user_token" "exporter_token" {
   comment               = "Exporter"
   token_name            = "exporter"
   user_id               = proxmox_virtual_environment_user.exporter.user_id
+  privileges_separation = false
+}
+
+resource "proxmox_virtual_environment_user_token" "ansible_token" {
+  comment               = "Ansible"
+  token_name            = "ansible"
+  user_id               = proxmox_virtual_environment_user.ansible.user_id
   privileges_separation = false
 }

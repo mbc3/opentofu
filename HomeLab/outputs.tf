@@ -71,12 +71,12 @@ output "exporter_account_password" {
 # API Tokens
 ###################
 
-# output "ansible_token" {
-#   value     = proxmox_virtual_environment_user_token.ansible_token
-#   sensitive = true
-# }
-
 output "exporter_token" {
   value     = proxmox_virtual_environment_user_token.exporter_token
+  sensitive = true
+}
+
+output "ansible_token" {
+  value     = proxmox_virtual_environment_user_token.ansible_token
   sensitive = true
 }
