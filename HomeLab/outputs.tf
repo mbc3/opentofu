@@ -43,11 +43,6 @@ output "proxy_container_password" {
   sensitive = true
 }
 
-output "email_container_password" {
-  value     = random_password.email_container_password.result
-  sensitive = true
-}
-
 ###################
 # Account Passwords
 ###################

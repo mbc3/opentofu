@@ -233,23 +233,6 @@ resource "opnsense_unbound_host_override" "openbao_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:febe:dbba"
 }
 
-resource "opnsense_unbound_host_override" "mail_4" {
-  enabled     = true
-  description = "mail ipv4"
-  type        = "A"
-  hostname    = "mail"
-  domain      = "localdomain"
-  server      = "192.168.7.117"
-}
-
-resource "opnsense_unbound_host_override" "mail_6" {
-  enabled     = true
-  description = "mail ipv6"
-  type        = "AAAA"
-  hostname    = "mail"
-  domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fef2:984d"
-}
 
 resource "opnsense_unbound_host_override" "proxy_4" {
   enabled     = true
