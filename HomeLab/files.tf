@@ -54,7 +54,7 @@ resource "proxmox_virtual_environment_vm" "files_vm" {
     file_format  = "raw"
     ssd          = "true"
     discard      = "on"
-    backup       = "true"
+    backup       = "false" # don't need to back up this disk
     iothread     = "true"
   }
 
