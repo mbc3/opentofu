@@ -48,7 +48,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     for_each = var.disks
     content {
       datastore_id = "local-zfs"
-      interface    = "scsi0"
+      interface    = disk.value["interface"]
       size         = disk.value["size"]
       ssd          = "true"
       discard      = "on"
@@ -57,16 +57,26 @@ resource "proxmox_virtual_environment_vm" "vm" {
     }
   }
 
-  efi_disk {
-    datastore_id      = "local-zfs"
-    file_format       = "raw"
-    type              = "4m"
-    pre_enrolled_keys = false
+  # only need these if uefi_boot is enabled
+
+  dynamic "efi_disk" {
+    for_each = var.uefi_boot ? ["placeholder"] : []
+    content {
+      datastore_id      = "local-zfs"
+      file_format       = "raw"
+      type              = "4m"
+      pre_enrolled_keys = false
+    }
   }
 
-  rng {
-    source = "/dev/urandom"
+  dynamic "rng" {
+    for_each = var.uefi_boot ? ["placeholder"] : []
+    content {
+      source = "/dev/urandom"
+    }
   }
+
+  # end
 
   network_device {
     bridge = "vmbr0"

@@ -5,8 +5,10 @@ module "graphs_vm" {
   vm_tags        = ["monitoring"]
   vm_id          = 103
   disks = [{
-    size = "20"
-  backup = "true" }]
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
   cpus             = 2
   ram              = 2048
   pxe_boot         = false
@@ -28,8 +30,10 @@ module "logs_vm" {
   vm_tags        = ["monitoring"]
   vm_id          = 102
   disks = [{
-    size = "20"
-  backup = "true" }]
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
   cpus             = 2
   ram              = 2048
   pxe_boot         = false

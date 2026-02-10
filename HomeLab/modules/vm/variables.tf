@@ -26,11 +26,13 @@ variable "vm_id" {
 variable "disks" {
   description = "number/size of disk(s)"
   type = list(object({
-    size   = string
-    backup = string
+    interface = string
+    size      = string
+    backup    = string
   }))
   default = [{
-    size = "20"
+    interface = "scsi0"
+    size      = "20"
   backup = "true" }]
 }
 

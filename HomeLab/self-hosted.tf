@@ -5,8 +5,10 @@ module "self_hosted_vm" {
   vm_tags        = ["test"]
   vm_id          = 115
   disks = [{
-    size = "20"
-  backup = "true" }]
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
   cpus             = 2
   ram              = 2048
   pxe_boot         = false
