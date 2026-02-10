@@ -1,70 +1,22 @@
-resource "proxmox_virtual_environment_vm" "self_hosted_vm" {
-  name        = "hosted"
-  description = "Self Hosted Server"
-  tags        = ["test"]
+module "self_hosted_vm" {
+  source         = "./modules/vm"
+  vm_name        = "hosted"
+  vm_description = "Self Hosted Server"
+  vm_tags        = ["test"]
+  vm_id          = 115
+  disks = [{
+    size = "20"
+  backup = "true" }]
+  cpus             = 2
+  ram              = 2048
+  pxe_boot         = false
+  uefi_boot        = true
+  vm_startup_order = "6"
+  vm_startup_delay = "3"
+}
 
-  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name = var.node_name
-  vm_id     = 115
 
-  delete_unreferenced_disks_on_destroy = true
-  purge_on_destroy                     = true
-
-  agent {
-    enabled = true
-  }
-  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
-  stop_on_destroy = true
-
-  startup {
-    order    = "6"
-    up_delay = "3"
-  }
-
-  cpu {
-    cores = 2
-    type  = "host"
-    units = "100"
-  }
-
-  memory {
-    dedicated = 2048
-    floating  = 2048 # set equal to dedicated to enable ballooning
-  }
-
-  boot_order = ["scsi0", "net0"]
-  bios       = "ovmf"
-
-  # boot disk
-  scsi_hardware = "virtio-scsi-single"
-  disk {
-    datastore_id = "local-zfs"
-    interface    = "scsi0"
-    size         = "20"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "true"
-    iothread     = "true"
-  }
-
-  efi_disk {
-    datastore_id      = "local-zfs"
-    file_format       = "raw"
-    type              = "4m"
-    pre_enrolled_keys = false
-  }
-
-  rng {
-    source = "/dev/urandom"
-  }
-
-  network_device {
-    bridge = "vmbr0"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
+moved {
+  from = proxmox_virtual_environment_vm.self_hosted_vm
+  to   = module.self_hosted_vm.proxmox_virtual_environment_vm.vm
 }
