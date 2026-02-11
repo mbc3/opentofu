@@ -56,6 +56,10 @@ resource "proxmox_virtual_environment_container" "proxy_container" {
     type             = "centos"
   }
 
+  features {
+    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
+  }
+
   startup {
     order    = "6"
     up_delay = "2"

@@ -2,7 +2,7 @@ module "self_hosted_vm" {
   source         = "./modules/vm"
   vm_name        = "hosted"
   vm_description = "Self Hosted Server"
-  vm_tags        = ["test"]
+  vm_tags        = ["applications"]
   vm_id          = 115
   disks = [{
     interface = "scsi0"

@@ -1,60 +1,26 @@
-resource "proxmox_virtual_environment_vm" "freeipa_vm" {
-  name        = "freeipa"
-  description = "FreeIPA Server"
-  tags        = ["auth"]
+module "freeipa_vm" {
+  source         = "./modules/vm"
+  vm_name        = "freeipa"
+  vm_description = "FreeIPA Server"
+  vm_tags        = ["auth"]
+  vm_id          = 105
+  disks = [{
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
+  cpus             = 2
+  ram              = 2048
+  pxe_boot         = false
+  uefi_boot        = false
+  vm_startup_order = "2"
+  vm_startup_delay = "3"
+}
 
-  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name = var.node_name
-  vm_id     = 105
 
-  delete_unreferenced_disks_on_destroy = true
-  purge_on_destroy                     = true
-
-  agent {
-    enabled = true
-  }
-  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
-  stop_on_destroy = true
-
-  startup {
-    order    = "2"
-    up_delay = "3"
-  }
-
-  cpu {
-    cores = 2
-    type  = "host"
-    units = "100"
-  }
-
-  boot_order = ["scsi0", "net0"]
-
-  memory {
-    dedicated = 2048
-    floating  = 2048 # set equal to dedicated to enable ballooning
-  }
-
-  # boot disk
-  scsi_hardware = "virtio-scsi-single"
-  disk {
-    datastore_id = "local-zfs"
-    interface    = "scsi0"
-    size         = "20"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "true"
-    iothread     = "true"
-  }
-
-  network_device {
-    bridge = "vmbr0"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
+moved {
+  from = proxmox_virtual_environment_vm.freeipa_vm
+  to   = module.freeipa_vm.proxmox_virtual_environment_vm.vm
 }
 
 resource "proxmox_virtual_environment_container" "ca_container" {
@@ -113,6 +79,9 @@ resource "proxmox_virtual_environment_container" "ca_container" {
   operating_system {
     template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
     type             = "centos"
+  }
+  features {
+    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
   }
 
   startup {

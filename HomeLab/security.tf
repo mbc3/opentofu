@@ -1,58 +1,24 @@
-resource "proxmox_virtual_environment_vm" "wazuh_vm" {
-  name        = "wazuh"
-  description = "Wazuh Server"
-  tags        = ["security"]
+module "wazuh_vm" {
+  source         = "./modules/vm"
+  vm_name        = "wazuh"
+  vm_description = "Wazuh Server"
+  vm_tags        = ["security"]
+  vm_id          = 111
+  disks = [{
+    interface = "scsi0"
+    size      = "50"
+    backup    = "true"
+  }]
+  cpus             = 4
+  ram              = 8192
+  pxe_boot         = false
+  uefi_boot        = false
+  vm_startup_order = "5"
+  vm_startup_delay = "5"
+}
 
-  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name = var.node_name
-  vm_id     = 111
 
-  delete_unreferenced_disks_on_destroy = true
-  purge_on_destroy                     = true
-
-  agent {
-    enabled = true
-  }
-  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
-  stop_on_destroy = true
-
-  startup {
-    order    = "5"
-    up_delay = "5"
-  }
-
-  cpu {
-    cores = 4
-    type  = "host"
-    units = "100"
-  }
-
-  boot_order = ["scsi0", "net0"]
-
-  memory {
-    dedicated = 8192
-    floating  = 8192 # set equal to dedicated to enable ballooning
-  }
-
-  # boot disk
-  scsi_hardware = "virtio-scsi-single"
-  disk {
-    datastore_id = "local-zfs"
-    interface    = "scsi0"
-    size         = "50"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "true"
-    iothread     = "true"
-  }
-
-  network_device {
-    bridge = "vmbr0"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
+moved {
+  from = proxmox_virtual_environment_vm.wazuh_vm
+  to   = module.wazuh_vm.proxmox_virtual_environment_vm.vm
 }
