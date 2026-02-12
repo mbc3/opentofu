@@ -19,12 +19,12 @@
 #####################
 
 output "dns01_container_password" {
-  value     = random_password.dns01_container_password.result
+  value     = module.dns01_lxc.lxc_password
   sensitive = true
 }
 
 output "dns02_container_password" {
-  value     = random_password.dns02_container_password.result
+  value     = module.dns02_lxc.lxc_password
   sensitive = true
 }
 

@@ -1,146 +1,59 @@
-resource "proxmox_virtual_environment_container" "dns01_container" {
-  description = "DNS01 Container"
-
-  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name    = var.node_name
-  vm_id        = 101
-  unprivileged = "true"
-  tags         = ["dns"]
-
-  initialization {
-    hostname = "dns01"
-
-    ip_config {
-      ipv4 {
-        address = "192.168.7.101/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-
-    dns {
-      domain  = "localdomain"
-      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
-    }
-
-    user_account {
-      password = random_password.dns01_container_password.result
-      keys     = [var.ssh_key]
-    }
-  }
-
-  cpu {
-    cores = "4"
-  }
-
-  memory {
-    dedicated = "512"
-    swap      = "512"
-  }
-
-  disk {
-    datastore_id = "local-zfs"
-    size         = "15"
-  }
-
-  network_interface {
-    name     = "eth0"
-    firewall = "true"
-  }
-
-  operating_system {
-    template_file_id = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
-    type             = "debian"
-  }
-
-  features {
-    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
-  }
-
-  startup {
-    order    = "1"
-    up_delay = "1"
-  }
+module "dns01_lxc" {
+  source            = "./modules/lxc"
+  lxc_description   = "DNS01 Container"
+  lxc_name          = "dns01"
+  lxc_tags          = ["dns"]
+  lxc_id            = 101
+  lxc_unpriv        = true
+  lxc_ip            = "192.168.7.101"
+  ssh_key           = var.ssh_key
+  cpus              = 4
+  swap              = 1024
+  ram               = 512
+  disk_size         = 15
+  dns_servers       = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+  lxc_startup_order = "1"
+  lxc_startup_delay = "1"
+  lxc_template      = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
+  is_centos         = false
 }
 
-resource "random_password" "dns01_container_password" {
-  length           = 16
-  override_special = "_%@"
-  special          = true
+moved {
+  from = proxmox_virtual_environment_container.dns01_container
+  to   = module.dns01_lxc.proxmox_virtual_environment_container.lxc
 }
 
-
-resource "proxmox_virtual_environment_container" "dns02_container" {
-  description = "DNS02 Container"
-
-  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name    = var.node_name
-  vm_id        = 106
-  unprivileged = "true"
-  tags         = ["dns"]
-
-  initialization {
-    hostname = "dns02"
-
-    ip_config {
-      ipv4 {
-        address = "192.168.7.106/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-
-    dns {
-      domain  = "localdomain"
-      servers = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
-    }
-
-    user_account {
-      password = random_password.dns02_container_password.result
-      keys     = [var.ssh_key]
-    }
-  }
-
-  cpu {
-    cores = "4"
-  }
-
-  memory {
-    dedicated = "512"
-    swap      = "512"
-  }
-
-  disk {
-    datastore_id = "local-zfs"
-    size         = "15"
-  }
-
-  network_interface {
-    name     = "eth0"
-    firewall = "true"
-  }
-
-  operating_system {
-    template_file_id = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
-    type             = "debian"
-  }
-
-  features {
-    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
-  }
-
-  startup {
-    order    = "1"
-    up_delay = "1"
-  }
+moved {
+  from = random_password.dns01_container_password
+  to   = module.dns01_lxc.random_password.lxc_password
 }
 
-resource "random_password" "dns02_container_password" {
-  length           = 16
-  override_special = "_%@"
-  special          = true
+module "dns02_lxc" {
+  source            = "./modules/lxc"
+  lxc_description   = "DNS02 Container"
+  lxc_name          = "dns02"
+  lxc_tags          = ["dns"]
+  lxc_id            = 106
+  lxc_unpriv        = true
+  lxc_ip            = "192.168.7.106"
+  ssh_key           = var.ssh_key
+  cpus              = 4
+  swap              = 1024
+  ram               = 512
+  disk_size         = 15
+  dns_servers       = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+  lxc_startup_order = "1"
+  lxc_startup_delay = "1"
+  lxc_template      = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
+  is_centos         = false
+}
+
+moved {
+  from = proxmox_virtual_environment_container.dns02_container
+  to   = module.dns02_lxc.proxmox_virtual_environment_container.lxc
+}
+
+moved {
+  from = random_password.dns02_container_password
+  to   = module.dns02_lxc.random_password.lxc_password
 }
