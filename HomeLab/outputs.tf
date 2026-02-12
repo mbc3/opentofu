@@ -28,18 +28,18 @@ output "dns02_container_password" {
   sensitive = true
 }
 
-output "ca_container_password" {
-  value     = random_password.ca_container_password.result
-  sensitive = true
-}
-
 output "openbao_container_password" {
-  value     = random_password.openbao_container_password.result
+  value     = module.openbao_lxc.lxc_password
   sensitive = true
 }
 
 output "proxy_container_password" {
-  value     = random_password.proxy_container_password.result
+  value     = module.proxy_lxc.lxc_password
+  sensitive = true
+}
+
+output "ca_container_password" {
+  value     = module.ca_lxc.lxc_password
   sensitive = true
 }
 

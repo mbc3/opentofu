@@ -1,275 +1,103 @@
-resource "proxmox_virtual_environment_vm" "netboot_vm" {
-  name        = "netboot"
-  description = "Netboot PXE Server"
-  tags        = ["automation"]
-
-  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name = var.node_name
-  vm_id     = 113
-
-  delete_unreferenced_disks_on_destroy = true
-  purge_on_destroy                     = true
-
-  agent {
-    enabled = true
-  }
-  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
-  stop_on_destroy = true
-
-  startup {
-    order    = "4"
-    up_delay = "5"
-  }
-
-  cpu {
-    cores = 4
-    type  = "host"
-    units = "100"
-  }
-
-
-  memory {
-    dedicated = 2048
-    floating  = 2048 # set equal to dedicated to enable ballooning
-  }
-
-  boot_order = ["scsi0", "net0"]
-  # bios = "ovmf"
-
-  # boot disk
-  scsi_hardware = "virtio-scsi-single"
-  disk {
-    datastore_id = "local-zfs"
-    interface    = "scsi0"
-    size         = "20"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "true"
-    iothread     = "true"
-  }
-
-  # efi_disk {
-  #   datastore_id      = "local-zfs"
-  #   file_format       = "raw"
-  #   type              = "4m"
-  #   pre_enrolled_keys = false
-  # }
-
-  network_device {
-    bridge = "vmbr0"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
+module "netboot_vm" {
+  source         = "./modules/vm"
+  vm_name        = "netboot"
+  vm_description = "Netboot PXE Server"
+  vm_tags        = ["automation"]
+  vm_id          = 113
+  disks = [{
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
+  cpus             = 4
+  ram              = 2048
+  pxe_boot         = false
+  uefi_boot        = false
+  vm_startup_order = "4"
+  vm_startup_delay = "5"
 }
 
-resource "proxmox_virtual_environment_vm" "netbox_vm" {
-  name        = "netbox"
-  description = "Netbox Server"
-  tags        = ["automation"]
 
-  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name = var.node_name
-  vm_id     = 114
-
-  delete_unreferenced_disks_on_destroy = true
-  purge_on_destroy                     = true
-
-  agent {
-    enabled = true
-  }
-  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
-  stop_on_destroy = true
-
-  startup {
-    order    = "4"
-    up_delay = "5"
-  }
-
-  cpu {
-    cores = 2
-    type  = "host"
-    units = "100"
-  }
-
-  memory {
-    dedicated = 2048
-    floating  = 2048 # set equal to dedicated to enable ballooning
-  }
-
-  boot_order = ["scsi0", "net0"]
-  # bios       = "ovmf"
-
-  # boot disk
-  scsi_hardware = "virtio-scsi-single"
-  disk {
-    datastore_id = "local-zfs"
-    interface    = "scsi0"
-    size         = "20"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "true"
-    iothread     = "true"
-  }
-
-  # efi_disk {
-  #   datastore_id      = "local-zfs"
-  #   file_format       = "raw"
-  #   type              = "4m"
-  #   pre_enrolled_keys = false
-  # }
-
-  network_device {
-    bridge = "vmbr0"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
+moved {
+  from = proxmox_virtual_environment_vm.netboot_vm
+  to   = module.netboot_vm.proxmox_virtual_environment_vm.vm
 }
 
-resource "proxmox_virtual_environment_vm" "semaphore_vm" {
-  name        = "semaphore"
-  description = "Semaphore Server"
-  tags        = ["automation"]
-
-  #node_name = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name = var.node_name
-  vm_id     = 108
-
-  delete_unreferenced_disks_on_destroy = true
-  purge_on_destroy                     = true
-
-  agent {
-    enabled = true
-  }
-  # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
-  stop_on_destroy = true
-
-  startup {
-    order    = "3"
-    up_delay = "5"
-  }
-
-  cpu {
-    cores = 4
-    type  = "host"
-    units = "100"
-  }
-
-  memory {
-    dedicated = 4096
-    floating  = 4096 # set equal to dedicated to enable ballooning
-  }
-
-  boot_order = ["scsi0", "net0"]
-  # bios       = "ovmf"
-
-  # boot disk
-  scsi_hardware = "virtio-scsi-single"
-  disk {
-    datastore_id = "local-zfs"
-    interface    = "scsi0"
-    size         = "20"
-    ssd          = "true"
-    discard      = "on"
-    backup       = "true"
-    iothread     = "true"
-  }
-
-  # efi_disk {
-  #   datastore_id      = "local-zfs"
-  #   file_format       = "raw"
-  #   type              = "4m"
-  #   pre_enrolled_keys = false
-  # }
-
-  network_device {
-    bridge = "vmbr0"
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  serial_device {}
+module "netbox_vm" {
+  source         = "./modules/vm"
+  vm_name        = "netbox"
+  vm_description = "Netbox Server"
+  vm_tags        = ["automation"]
+  vm_id          = 114
+  disks = [{
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
+  cpus             = 2
+  ram              = 2048
+  pxe_boot         = false
+  uefi_boot        = false
+  vm_startup_order = "4"
+  vm_startup_delay = "5"
 }
 
-resource "proxmox_virtual_environment_container" "openbao_container" {
-  description = "OpenBao Container"
 
-  #node_name    = data.vault_kv_secret_v2.homelab_tofu.data["node_name"]
-  node_name    = var.node_name
-  vm_id        = 110
-  unprivileged = "true"
-  tags         = ["automation"]
-
-  initialization {
-    hostname = "openbao"
-
-    ip_config {
-      ipv4 {
-        address = "192.168.7.110/24"
-        gateway = "192.168.7.1"
-      }
-      ipv6 {
-        address = "auto"
-      }
-    }
-
-    dns {
-      domain  = "localdomain"
-      servers = var.dns_servers
-    }
-
-    user_account {
-      password = random_password.openbao_container_password.result
-      keys     = [var.ssh_key]
-    }
-  }
-
-  cpu {
-    cores = "2"
-    units = "100" # this is priority of cpu
-  }
-
-  memory {
-    dedicated = "512"
-    swap      = "1024"
-  }
-
-  disk {
-    datastore_id = "local-zfs"
-    size         = "8"
-  }
-
-  network_interface {
-    name     = "eth0"
-    firewall = "true"
-  }
-
-  operating_system {
-    template_file_id = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
-    type             = "centos"
-  }
-
-  features {
-    nesting = "true" # strangely in deb 13 nesting needs to be enabled for the console to work
-  }
-
-  startup {
-    order    = "4"
-    up_delay = "2"
-  }
+moved {
+  from = proxmox_virtual_environment_vm.netbox_vm
+  to   = module.netbox_vm.proxmox_virtual_environment_vm.vm
 }
 
-resource "random_password" "openbao_container_password" {
-  length           = 16
-  override_special = "_%@"
-  special          = true
+module "semaphore_vm" {
+  source         = "./modules/vm"
+  vm_name        = "semaphore"
+  vm_description = "Semaphore Server"
+  vm_tags        = ["automation"]
+  vm_id          = 108
+  disks = [{
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
+  cpus             = 4
+  ram              = 4096
+  pxe_boot         = false
+  uefi_boot        = false
+  vm_startup_order = "3"
+  vm_startup_delay = "5"
+}
+
+
+moved {
+  from = proxmox_virtual_environment_vm.semaphore_vm
+  to   = module.semaphore_vm.proxmox_virtual_environment_vm.vm
+}
+
+module "openbao_lxc" {
+  source            = "./modules/lxc"
+  lxc_description   = "OpenBao Container"
+  lxc_name          = "openbao"
+  lxc_tags          = ["automation"]
+  lxc_id            = 110
+  lxc_unpriv        = true
+  lxc_ip            = "192.168.7.110"
+  ssh_key           = var.ssh_key
+  cpus              = 2
+  swap              = 1024
+  ram               = 512
+  disk_size         = 8
+  lxc_startup_order = "4"
+  lxc_startup_delay = "2"
+  lxc_template      = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
+  is_centos         = true
+}
+
+moved {
+  from = proxmox_virtual_environment_container.openbao_container
+  to   = module.openbao_lxc.proxmox_virtual_environment_container.lxc
+}
+
+moved {
+  from = random_password.openbao_container_password
+  to   = module.openbao_lxc.random_password.lxc_password
 }
