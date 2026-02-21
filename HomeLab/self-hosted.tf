@@ -10,7 +10,7 @@ module "self_hosted_vm" {
     backup    = "true"
   }]
   cpus             = 2
-  ram              = 2048
+  ram              = 4096
   pxe_boot         = false
   uefi_boot        = true
   vm_startup_order = "6"
