@@ -48,31 +48,6 @@ moved {
   to   = module.netbox_vm.proxmox_virtual_environment_vm.vm
 }
 
-module "semaphore_vm" {
-  source         = "./modules/vm"
-  vm_name        = "semaphore"
-  vm_description = "Semaphore Server"
-  vm_tags        = ["automation"]
-  vm_id          = 108
-  disks = [{
-    interface = "scsi0"
-    size      = "20"
-    backup    = "true"
-  }]
-  cpus             = 4
-  ram              = 4096
-  pxe_boot         = false
-  uefi_boot        = false
-  vm_startup_order = "3"
-  vm_startup_delay = "5"
-}
-
-
-moved {
-  from = proxmox_virtual_environment_vm.semaphore_vm
-  to   = module.semaphore_vm.proxmox_virtual_environment_vm.vm
-}
-
 module "openbao_lxc" {
   source            = "./modules/lxc"
   lxc_description   = "OpenBao Container"
