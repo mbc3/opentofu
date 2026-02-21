@@ -252,24 +252,6 @@ resource "opnsense_unbound_host_override" "proxy_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:fe83:b669"
 }
 
-resource "opnsense_unbound_host_override" "semaphore_4" {
-  enabled     = true
-  description = "semaphore ipv4"
-  type        = "A"
-  hostname    = "semaphore"
-  domain      = "localdomain"
-  server      = "192.168.7.108"
-}
-
-resource "opnsense_unbound_host_override" "semaphore_6" {
-  enabled     = true
-  description = "semaphore ipv6"
-  type        = "AAAA"
-  hostname    = "semaphore"
-  domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fe0b:4495"
-}
-
 resource "opnsense_unbound_host_override" "services_4" {
   enabled     = true
   description = "services proxmox ipv4"

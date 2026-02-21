@@ -202,24 +202,6 @@ resource "opnsense_unbound_host_alias" "prometheus6" {
   description = "Prometheus IPv6"
 }
 
-resource "opnsense_unbound_host_alias" "run4" {
-  override = opnsense_unbound_host_override.semaphore_4.id
-
-  enabled     = true
-  hostname    = "run"
-  domain      = "semaphore.localdomain"
-  description = "Run IPv4"
-}
-
-resource "opnsense_unbound_host_alias" "run6" {
-  override = opnsense_unbound_host_override.semaphore_6.id
-
-  enabled     = true
-  hostname    = "run"
-  domain      = "semaphore.localdomain"
-  description = "Run IPv6"
-}
-
 resource "opnsense_unbound_host_alias" "search_4" {
   override = opnsense_unbound_host_override.hosted_4.id
 
