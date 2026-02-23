@@ -252,6 +252,24 @@ resource "opnsense_unbound_host_override" "proxy_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:fe83:b669"
 }
 
+resource "opnsense_unbound_host_override" "runner01_4" {
+  enabled     = true
+  description = "runner01 ipv4"
+  type        = "A"
+  hostname    = "runner01"
+  domain      = "localdomain"
+  server      = "192.168.7.112"
+}
+
+resource "opnsense_unbound_host_override" "runner01_6" {
+  enabled     = true
+  description = "runner01 ipv6"
+  type        = "AAAA"
+  hostname    = "proxy"
+  domain      = "localdomain"
+  server      = "2600:6c50:77f:af03:be24:11ff:fedc:c477"
+}
+
 resource "opnsense_unbound_host_override" "services_4" {
   enabled     = true
   description = "services proxmox ipv4"
