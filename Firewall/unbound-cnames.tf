@@ -80,7 +80,6 @@ resource "opnsense_unbound_host_alias" "auth4" {
   description = "Auth IPv4"
 }
 
-
 resource "opnsense_unbound_host_alias" "auth6" {
   override = opnsense_unbound_host_override.freeipa_6.id
 
@@ -165,21 +164,20 @@ resource "opnsense_unbound_host_alias" "alloy6" {
 }
 
 resource "opnsense_unbound_host_alias" "pdf4" {
-  override = opnsense_unbound_host_override.mediapi_4.id
+  override = opnsense_unbound_host_override.hosted_4.id
 
   enabled     = true
   hostname    = "pdf"
-  domain      = "mediapi.localdomain"
+  domain      = "hosted.localdomain"
   description = "PDF IPv4"
 }
 
-
 resource "opnsense_unbound_host_alias" "pdf6" {
-  override = opnsense_unbound_host_override.mediapi_6.id
+  override = opnsense_unbound_host_override.hosted_6.id
 
   enabled     = true
   hostname    = "pdf"
-  domain      = "mediapi.localdomain"
+  domain      = "hosted.localdomain"
   description = "PDF IPv6"
 }
 
@@ -191,7 +189,6 @@ resource "opnsense_unbound_host_alias" "prometheus4" {
   domain      = "graphs.localdomain"
   description = "Prometheus IPv4"
 }
-
 
 resource "opnsense_unbound_host_alias" "prometheus6" {
   override = opnsense_unbound_host_override.graphs_6.id
