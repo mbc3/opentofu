@@ -265,7 +265,7 @@ resource "opnsense_unbound_host_override" "runner01_6" {
   enabled     = true
   description = "runner01 ipv6"
   type        = "AAAA"
-  hostname    = "proxy"
+  hostname    = "runner01"
   domain      = "localdomain"
   server      = "2600:6c50:77f:af03:be24:11ff:fedc:c477"
 }
