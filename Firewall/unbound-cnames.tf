@@ -16,25 +16,6 @@ resource "opnsense_unbound_host_alias" "bao6" {
   description = "Bao IPv6"
 }
 
-resource "opnsense_unbound_host_alias" "books4" {
-  override = opnsense_unbound_host_override.mediapi_4.id
-
-  enabled     = true
-  hostname    = "books"
-  domain      = "mediapi.localdomain"
-  description = "Books IPv4"
-}
-
-
-resource "opnsense_unbound_host_alias" "books6" {
-  override = opnsense_unbound_host_override.mediapi_6.id
-
-  enabled     = true
-  hostname    = "books"
-  domain      = "mediapi.localdomain"
-  description = "Books IPv6"
-}
-
 resource "opnsense_unbound_host_alias" "box4" {
   override = opnsense_unbound_host_override.netbox_4.id
 
@@ -69,6 +50,24 @@ resource "opnsense_unbound_host_alias" "cooking6" {
   hostname    = "cooking"
   domain      = "hosted.localdomain"
   description = "Cooking IPv6"
+}
+
+resource "opnsense_unbound_host_alias" "cyber_chef4" {
+  override = opnsense_unbound_host_override.hosted_4.id
+
+  enabled     = true
+  hostname    = "cyberchef"
+  domain      = "hosted.localdomain"
+  description = "Cyber Chef IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "cyber_chef6" {
+  override = opnsense_unbound_host_override.hosted_6.id
+
+  enabled     = true
+  hostname    = "cyberchef"
+  domain      = "hosted.localdomain"
+  description = "Cyber Chef IPv6"
 }
 
 resource "opnsense_unbound_host_alias" "auth4" {
