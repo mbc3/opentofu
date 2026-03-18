@@ -198,6 +198,24 @@ resource "opnsense_unbound_host_alias" "prometheus6" {
   description = "Prometheus IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "registry4" {
+  override = opnsense_unbound_host_override.hosted_4.id
+
+  enabled     = true
+  hostname    = "registry"
+  domain      = "hosted.localdomain"
+  description = "Registry IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "registry6" {
+  override = opnsense_unbound_host_override.hosted_6.id
+
+  enabled     = true
+  hostname    = "registry"
+  domain      = "hosted.localdomain"
+  description = "Registry IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "search_4" {
   override = opnsense_unbound_host_override.hosted_4.id
 
