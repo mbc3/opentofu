@@ -288,20 +288,20 @@ resource "opnsense_unbound_host_override" "services_6" {
   server      = "2600:6c50:77f:af03::720"
 }
 
-resource "opnsense_unbound_host_override" "wazuh_4" {
+resource "opnsense_unbound_host_override" "forgejo_4" {
   enabled     = true
-  description = "wazuh ipv4"
+  description = "forgejo ipv4"
   type        = "A"
-  hostname    = "wazuh"
+  hostname    = "forgejo"
   domain      = "localdomain"
   server      = "192.168.7.111"
 }
 
-resource "opnsense_unbound_host_override" "wazuh_6" {
+resource "opnsense_unbound_host_override" "forgejo_6" {
   enabled     = true
-  description = "wazuh ipv6"
+  description = "forgejo ipv6"
   type        = "AAAA"
-  hostname    = "wazuh"
+  hostname    = "forgejo"
   domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fee6:6f79"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe4c:e620"
 }
