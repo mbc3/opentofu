@@ -198,6 +198,24 @@ resource "opnsense_unbound_host_alias" "prometheus6" {
   description = "Prometheus IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "repo4" {
+  override = opnsense_unbound_host_override.forgejo_4.id
+
+  enabled     = true
+  hostname    = "repo"
+  domain      = "forgejo.localdomain"
+  description = "Repo IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "repo6" {
+  override = opnsense_unbound_host_override.forgejo_6.id
+
+  enabled     = true
+  hostname    = "repo"
+  domain      = "forgejo.localdomain"
+  description = "Repo IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "registry4" {
   override = opnsense_unbound_host_override.hosted_4.id
 
