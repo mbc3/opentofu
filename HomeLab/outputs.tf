@@ -48,6 +48,11 @@ output "runner01_container_password" {
   sensitive = true
 }
 
+output "runner02_container_password" {
+  value     = module.runner02_lxc.lxc_password
+  sensitive = true
+}
+
 ###################
 # Account Passwords
 ###################
