@@ -34,7 +34,7 @@ module "ca_lxc" {
   ssh_key           = var.ssh_key
   cpus              = 2
   swap              = 1024
-  ram               = 512
+  ram               = 1024
   disk_size         = 15
   lxc_startup_order = "2"
   lxc_startup_delay = "2"

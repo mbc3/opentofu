@@ -82,11 +82,11 @@ output "exporter_account_password" {
 ###################
 
 output "exporter_token" {
-  value     = proxmox_virtual_environment_user_token.exporter_token
+  value     = proxmox_user_token.exporter_token
   sensitive = true
 }
 
 output "ansible_token" {
-  value     = proxmox_virtual_environment_user_token.ansible_token
+  value     = proxmox_user_token.ansible_token
   sensitive = true
 }
