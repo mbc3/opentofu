@@ -37,7 +37,7 @@ module "dns02_lxc" {
   lxc_unpriv        = true
   lxc_ip            = "192.168.7.106"
   ssh_key           = var.ssh_key
-  cpus              = 4
+  cpus              = 2
   swap              = 1024
   ram               = 512
   disk_size         = 15
