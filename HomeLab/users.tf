@@ -6,7 +6,7 @@ resource "proxmox_virtual_environment_user" "mbc" {
   last_name  = "Cohen"
   password   = random_password.mbc_account_password.result
   user_id    = "mbc@pve"
-  groups     = ["INFRA"]
+  groups     = [proxmox_virtual_environment_group.infra.group_id]
 }
 
 
@@ -15,7 +15,7 @@ resource "proxmox_virtual_environment_user" "iphone" {
   comment  = "iPhone User"
   password = random_password.iphone_account_password.result
   user_id  = "iphone@pve"
-  groups   = ["MON", "VM"]
+  groups   = [proxmox_virtual_environment_group.mon.group_id, proxmox_virtual_environment_group.vm.group_id]
 }
 
 
@@ -24,7 +24,7 @@ resource "proxmox_virtual_environment_user" "ansible" {
   comment  = "Ansible User"
   password = random_password.ansible_account_password.result
   user_id  = "ansible@pve"
-  groups   = ["MON"]
+  groups   = [proxmox_virtual_environment_group.infra.group_id]
 }
 
 resource "proxmox_virtual_environment_user" "exporter" {
@@ -32,7 +32,7 @@ resource "proxmox_virtual_environment_user" "exporter" {
   comment  = "PVE Exporter User"
   password = random_password.ansible_account_password.result
   user_id  = "exporter@pve"
-  groups   = ["MON"]
+  groups   = [proxmox_virtual_environment_group.mon.group_id]
 }
 
 ###################
