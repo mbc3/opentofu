@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   lint:
-    runs-on: self-hosts
+    runs-on: self-hosted
     steps:
       - run: tofu validate
   # build-infra:
