@@ -1,19 +1,4 @@
 #####################
-# OpenBao
-#####################
-
-
-# output "homelab_tofu_api_token" {
-#   value     = data.vault_kv_secret_v2.homelab_tofu.data["api_token"]
-#   sensitive = true
-# }
-
-# output "homelab_tofu_endpoint" {
-#   value     = data.vault_kv_secret_v2.homelab_tofu.data["endpoint"]
-#   sensitive = true
-# }
-
-#####################
 # Container Passwords
 #####################
 

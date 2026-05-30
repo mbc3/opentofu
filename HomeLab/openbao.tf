@@ -1,8 +1,8 @@
+# mount is the root path of the secrets store
+# name is the full path of the secret
 
-# resource "vault_mount" "vault_mount" {
-#   path        = "kv/homelab/tofu"
-#   type        = "kv"
-#   options     = { version = "2" }
-#   description = "homelab tofu mount"
 
-# }
+ephemeral "vault_kv_secret_v2" "homelab_tofu" {
+  mount = "kv"
+  name  = "homelab/tofu"
+}

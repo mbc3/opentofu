@@ -10,23 +10,6 @@ variable "secret_id" {
   sensitive   = true
 }
 
-variable "private_ssh_key" {
-  description = "private ssh key to connect to proxmox"
-  type        = string
-  sensitive   = true
-}
-
-variable "api_token" {
-  description = "API token and username for proxmox host"
-  type        = string
-  sensitive   = true
-}
-
-variable "endpoint" {
-  description = "Endpoint for Proxmox host"
-  type        = string
-}
-
 variable "node_name" {
   description = "Name of the node in Proxmox cluster"
   type        = string
@@ -36,6 +19,7 @@ variable "node_name" {
 variable "ssh_key" {
   description = "Public SSH key to insert into containers"
   type        = string
+  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5jb8Vcw0M2BxH4+LxWWc6oBJxa2VsGxlmOjUUGFVpk mbc@arch"
 }
 
 variable "search_domain" {
