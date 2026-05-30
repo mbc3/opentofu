@@ -1,7 +1,17 @@
 ---
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
-  test:
-    runs-on: self-hosted
+  lint:
+    runs-on: self-hosts
     steps:
-      - run: echo All good!
+      - run: tofu validate
+  # build-infra:
+  #   runs-on: self-hosted
+  #   needs: lint
+  #   steps:
+  #     - run: tofu init --upgrade
+  #     - run: tofu plan -out=~/plan
+  #     - run: tofu apply ~/plan

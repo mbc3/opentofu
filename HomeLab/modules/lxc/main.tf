@@ -18,6 +18,32 @@ resource "proxmox_virtual_environment_container" "lxc" {
   unprivileged = var.lxc_unpriv
   tags         = var.lxc_tags
 
+  #IDmaps are for setting uids/guids for freeipa login
+  idmap {
+    container_id = 856200003
+    host_id      = 856200003
+    size         = 1
+    type         = "uid"
+  }
+  idmap {
+    container_id = 856200003
+    host_id      = 856200003
+    size         = 1
+    type         = "gid"
+  }
+  idmap {
+    container_id = 0
+    host_id      = 100000
+    size         = 65536
+    type         = "uid"
+  }
+  idmap {
+    container_id = 0
+    host_id      = 100000
+    size         = 65536
+    type         = "gid"
+  }
+
   initialization {
     hostname = var.lxc_name
 
@@ -74,7 +100,6 @@ resource "proxmox_virtual_environment_container" "lxc" {
     order    = var.lxc_startup_order
     up_delay = var.lxc_startup_delay
   }
-
 }
 
 resource "random_password" "lxc_password" {

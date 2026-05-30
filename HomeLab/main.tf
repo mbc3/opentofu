@@ -4,10 +4,10 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.107.0"
     }
-    #     #   vault = {
-    #     #     source  = "hashicorp/vault"
-    #     #     version = "~> 5.1.0"
-    #     #   }
+    vault = {
+      source  = "hashicorp/vault"
+      version = "5.9.0"
+    }
   }
 
   backend "s3" {

@@ -1,8 +1,7 @@
-# Misc
+#####################
+# OpenBao
+#####################
 
-# output "auto" {
-#   value = data.proxmox_virtual_environment_vms.auto
-# }
 
 # output "homelab_tofu_api_token" {
 #   value     = data.vault_kv_secret_v2.homelab_tofu.data["api_token"]
