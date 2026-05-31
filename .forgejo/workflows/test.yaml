@@ -8,10 +8,10 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: tofu validate
-  # build-infra:
-  #   runs-on: self-hosted
-  #   needs: lint
-  #   steps:
-  #     - run: tofu init --upgrade
-  #     - run: tofu plan -out=~/plan
-  #     - run: tofu apply ~/plan
+  build-infra:
+    runs-on: self-hosted
+    needs: lint
+    steps:
+      - run: tofu init --upgrade
+      - run: tofu apply -auto-approve -var "role_id=${{ secrets.ROLE_ID }}" -var
+          "secret_id=${{ secrets.SECRET_ID }}"
