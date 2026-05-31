@@ -5,16 +5,19 @@ on:
       - main
 jobs:
   lint:
+    name: Validate
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: tofu validate
   build-infra:
+    name: Tofu Apply
     runs-on: self-hosted
     needs: lint
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: tofu init --upgrade
         working-directory: ./HomeLab
-      - run: tofu apply -auto-approve -var "role_id=${{ secrets.ROLE_ID }}" -var "secret_id=${{ secrets.SECRET_ID }}"
+      - run: tofu apply -auto-approve -var "role_id=${{ secrets.ROLE_ID }}" -var
+          "secret_id=${{ secrets.SECRET_ID }}"
         working-directory: ./HomeLab
