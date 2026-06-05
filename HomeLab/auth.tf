@@ -17,6 +17,24 @@ module "freeipa_vm" {
   vm_startup_delay = "3"
 }
 
+module "freeipa02_vm" {
+  source         = "./modules/vm"
+  vm_name        = "freeipa02"
+  vm_description = "FreeIPA 02 Server"
+  vm_tags        = ["auth"]
+  vm_id          = 118
+  disks = [{
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
+  cpus             = 2
+  ram              = 2048
+  pxe_boot         = true
+  uefi_boot        = true
+  vm_startup_order = "2"
+  vm_startup_delay = "3"
+}
 
 moved {
   from = proxmox_virtual_environment_vm.freeipa_vm
