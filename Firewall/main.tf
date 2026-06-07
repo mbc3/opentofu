@@ -4,6 +4,10 @@ terraform {
       source  = "browningluke/opnsense"
       version = "0.19.0"
     }
+    vault = {
+      source  = "hashicorp/vault"
+      version = "5.9.0"
+    }
   }
 
   backend "s3" {
@@ -13,11 +17,4 @@ terraform {
     use_lockfile = true
     encrypt      = true
   }
-}
-
-provider "opnsense" {
-  uri            = var.uri
-  api_key        = var.api_key
-  api_secret     = var.api_secret
-  allow_insecure = true # needed until I put valid tls on login
 }

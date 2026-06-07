@@ -15,3 +15,15 @@ variable "api_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "role_id" {
+  description = "role ID for tofu to authenticate with open bao"
+  type        = string
+  sensitive   = true
+}
+
+variable "secret_id" {
+  description = "secret ID for tofu to authenticate with open bao"
+  type        = string
+  sensitive   = true
+}
