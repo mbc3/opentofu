@@ -88,6 +88,24 @@ resource "opnsense_unbound_host_alias" "auth6" {
   description = "Auth IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "freeipa02_auth4" {
+  override = opnsense_unbound_host_override.freeipa02_4.id
+
+  enabled     = true
+  hostname    = "freeipa02"
+  domain      = "auth.localdomain"
+  description = "Freeipa02 Auth IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "freeipa02_auth6" {
+  override = opnsense_unbound_host_override.freeipa02_6.id
+
+  enabled     = true
+  hostname    = "freeipa02"
+  domain      = "auth.localdomain"
+  description = "Freeipa02 Auth IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "grafana4" {
   override = opnsense_unbound_host_override.graphs_4.id
 
