@@ -2,7 +2,7 @@ terraform {
   required_providers {
     opnsense = {
       source  = "browningluke/opnsense"
-      version = "0.19.0"
+      version = "0.23.2"
     }
     vault = {
       source  = "hashicorp/vault"
