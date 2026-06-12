@@ -88,7 +88,6 @@ resource "opnsense_unbound_host_override" "files_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:fe58:7e8d"
 }
 
-
 resource "opnsense_unbound_host_override" "freeipa_4" {
   enabled     = true
   description = "freeipa ipv4"
@@ -105,6 +104,24 @@ resource "opnsense_unbound_host_override" "freeipa_6" {
   hostname    = "freeipa"
   domain      = "localdomain"
   server      = "2600:6c50:77f:af03:be24:11ff:fefa:1ce5"
+}
+
+resource "opnsense_unbound_host_override" "freeipa02_4" {
+  enabled     = true
+  description = "freeipa02 ipv4"
+  type        = "A"
+  hostname    = "freeipa02"
+  domain      = "localdomain"
+  server      = "192.168.7.118"
+}
+
+resource "opnsense_unbound_host_override" "freeipa02_6" {
+  enabled     = true
+  description = "freeipa02 ipv6"
+  type        = "AAAA"
+  hostname    = "freeipa02"
+  domain      = "localdomain"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe31:15b1"
 }
 
 resource "opnsense_unbound_host_override" "graphs_4" {
