@@ -2,7 +2,7 @@ provider "opnsense" {
   uri            = var.uri
   api_key        = ephemeral.vault_kv_secret_v2.homelab_firewall.data["api_key"]
   api_secret     = ephemeral.vault_kv_secret_v2.homelab_firewall.data["api_secret"]
-  allow_insecure = false # set to true if TLS isn't set up
+  allow_insecure = true # set to true if TLS isn't set up
 }
 
 provider "vault" {

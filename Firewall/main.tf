@@ -4,10 +4,6 @@ terraform {
       source  = "browningluke/opnsense"
       version = "0.23.2"
     }
-    vault = {
-      source  = "hashicorp/vault"
-      version = "5.9.0"
-    }
   }
 
   backend "s3" {
