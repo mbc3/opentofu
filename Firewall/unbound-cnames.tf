@@ -71,21 +71,21 @@ resource "opnsense_unbound_host_alias" "cyber_chef6" {
 }
 
 resource "opnsense_unbound_host_alias" "auth4" {
-  override = opnsense_unbound_host_override.freeipa_4.id
+  override = opnsense_unbound_host_override.freeipa01_4.id
 
   enabled     = true
-  hostname    = "freeipa"
+  hostname    = "freeipa01"
   domain      = "auth.localdomain"
-  description = "Auth IPv4"
+  description = "Freeipa01 Auth IPv4"
 }
 
 resource "opnsense_unbound_host_alias" "auth6" {
-  override = opnsense_unbound_host_override.freeipa_6.id
+  override = opnsense_unbound_host_override.freeipa01_6.id
 
   enabled     = true
-  hostname    = "freeipa"
+  hostname    = "freeipa01"
   domain      = "auth.localdomain"
-  description = "Auth IPv6"
+  description = "Freeipa01 Auth IPv6"
 }
 
 resource "opnsense_unbound_host_alias" "freeipa02_auth4" {

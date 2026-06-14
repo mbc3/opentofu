@@ -1,7 +1,7 @@
-module "freeipa_vm" {
+module "freeipa01_vm" {
   source         = "./modules/vm"
-  vm_name        = "freeipa"
-  vm_description = "FreeIPA Server"
+  vm_name        = "freeipa01"
+  vm_description = "FreeIPA 01 Server"
   vm_tags        = ["auth"]
   vm_id          = 105
   disks = [{
@@ -12,7 +12,7 @@ module "freeipa_vm" {
   cpus             = 2
   ram              = 2048
   pxe_boot         = false
-  uefi_boot        = false
+  uefi_boot        = true
   vm_startup_order = "2"
   vm_startup_delay = "3"
 }
@@ -30,15 +30,10 @@ module "freeipa02_vm" {
   }]
   cpus             = 2
   ram              = 2048
-  pxe_boot         = true
+  pxe_boot         = false
   uefi_boot        = true
   vm_startup_order = "2"
   vm_startup_delay = "3"
-}
-
-moved {
-  from = proxmox_virtual_environment_vm.freeipa_vm
-  to   = module.freeipa_vm.proxmox_virtual_environment_vm.vm
 }
 
 module "ca_lxc" {
