@@ -70,6 +70,24 @@ resource "opnsense_unbound_host_alias" "cyber_chef6" {
   description = "Cyber Chef IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "home4" {
+  override = opnsense_unbound_host_override.hosted_4.id
+
+  enabled     = true
+  hostname    = "home"
+  domain      = "hosted.localdomain"
+  description = "Home Assistant IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "home6" {
+  override = opnsense_unbound_host_override.hosted_6.id
+
+  enabled     = true
+  hostname    = "home"
+  domain      = "hosted.localdomain"
+  description = "Home Assistant IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "auth4" {
   override = opnsense_unbound_host_override.freeipa01_4.id
 
