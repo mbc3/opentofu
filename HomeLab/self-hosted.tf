@@ -6,7 +6,7 @@ module "self_hosted_vm" {
   vm_id          = 115
   disks = [{
     interface = "scsi0"
-    size      = "20"
+    size      = "50"
     backup    = "true"
   }]
   cpus             = 2
