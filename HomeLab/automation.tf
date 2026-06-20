@@ -37,15 +37,9 @@ module "netbox_vm" {
   cpus             = 2
   ram              = 2048
   pxe_boot         = false
-  uefi_boot        = false
+  uefi_boot        = true
   vm_startup_order = "4"
   vm_startup_delay = "5"
-}
-
-
-moved {
-  from = proxmox_virtual_environment_vm.netbox_vm
-  to   = module.netbox_vm.proxmox_virtual_environment_vm.vm
 }
 
 module "openbao_lxc" {
