@@ -9,18 +9,12 @@ module "netboot_vm" {
     size      = "20"
     backup    = "true"
   }]
-  cpus             = 4
+  cpus             = 2
   ram              = 2048
   pxe_boot         = false
-  uefi_boot        = false
+  uefi_boot        = true
   vm_startup_order = "4"
   vm_startup_delay = "5"
-}
-
-
-moved {
-  from = proxmox_virtual_environment_vm.netboot_vm
-  to   = module.netboot_vm.proxmox_virtual_environment_vm.vm
 }
 
 module "netbox_vm" {
