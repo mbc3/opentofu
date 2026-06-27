@@ -12,3 +12,8 @@ resource "proxmox_virtual_environment_group" "vm" {
   comment  = "Accounts with VM access"
   group_id = "vm"
 }
+
+resource "proxmox_virtual_environment_group" "netbox" {
+  comment  = "Netbox"
+  group_id = "netbox"
+}

@@ -61,6 +61,11 @@ output "exporter_account_password" {
   sensitive = true
 }
 
+output "netbox_account_password" {
+  value     = random_password.netbox_account_password.result
+  sensitive = true
+}
+
 ###################
 # API Tokens
 ###################
@@ -72,5 +77,10 @@ output "exporter_token" {
 
 output "ansible_token" {
   value     = proxmox_user_token.ansible_token
+  sensitive = true
+}
+
+output "netbox_token" {
+  value     = proxmox_user_token.netbox_token
   sensitive = true
 }
