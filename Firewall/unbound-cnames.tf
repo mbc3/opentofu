@@ -216,6 +216,24 @@ resource "opnsense_unbound_host_alias" "pdf6" {
   description = "PDF IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "proxbox4" {
+  override = opnsense_unbound_host_override.netbox_4.id
+
+  enabled     = true
+  hostname    = "proxbox-api"
+  domain      = "netbox.localdomain"
+  description = "Proxbox IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "proxbox6" {
+  override = opnsense_unbound_host_override.netbox_6.id
+
+  enabled     = true
+  hostname    = "proxbox-api"
+  domain      = "netbox.localdomain"
+  description = "Proxbox IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "prometheus4" {
   override = opnsense_unbound_host_override.graphs_4.id
 
