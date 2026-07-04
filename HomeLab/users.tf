@@ -35,14 +35,6 @@ resource "proxmox_virtual_environment_user" "exporter" {
   groups   = [proxmox_virtual_environment_group.mon.group_id]
 }
 
-resource "proxmox_virtual_environment_user" "netbox" {
-
-  comment  = "Netbox User"
-  password = random_password.netbox_account_password.result
-  user_id  = "netbox@pve"
-  groups   = [proxmox_virtual_environment_group.netbox.group_id]
-}
-
 
 ###################
 # Account Passwords
@@ -72,12 +64,6 @@ resource "random_password" "exporter_account_password" {
   special          = true
 }
 
-resource "random_password" "netbox_account_password" {
-  length           = 24
-  override_special = "!@#$%&*"
-  special          = true
-}
-
 
 ###################
 # API Tokens
@@ -94,12 +80,5 @@ resource "proxmox_user_token" "ansible_token" {
   comment               = "Ansible"
   token_name            = "ansible"
   user_id               = proxmox_virtual_environment_user.ansible.user_id
-  privileges_separation = false
-}
-
-resource "proxmox_user_token" "netbox_token" {
-  comment               = "Netbox"
-  token_name            = "netbox"
-  user_id               = proxmox_virtual_environment_user.netbox.user_id
   privileges_separation = false
 }

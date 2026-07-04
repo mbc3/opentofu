@@ -1,14 +1,3 @@
-resource "proxmox_virtual_environment_role" "netbox" {
-  role_id = "netbox"
-
-  privileges = [
-    "Datastore.Audit",
-    "Sys.Audit",
-    "VM.Audit",
-    "VM.GuestAgent.Audit",
-  ]
-}
-
 resource "proxmox_acl" "mon_acl" {
   path      = "/"
   propagate = true
@@ -28,11 +17,4 @@ resource "proxmox_acl" "vm_acl" {
   propagate = true
   group_id  = proxmox_virtual_environment_group.vm.group_id
   role_id   = "PVEVMAdmin"
-}
-
-resource "proxmox_acl" "netbox_acl" {
-  path      = "/"
-  propagate = true
-  group_id  = proxmox_virtual_environment_group.netbox.group_id
-  role_id   = "netbox"
 }
