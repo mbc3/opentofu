@@ -17,25 +17,6 @@ module "netboot_vm" {
   vm_startup_delay = "5"
 }
 
-module "netbox_vm" {
-  source         = "./modules/vm"
-  vm_name        = "netbox"
-  vm_description = "Netbox Server"
-  vm_tags        = ["automation"]
-  vm_id          = 114
-  disks = [{
-    interface = "scsi0"
-    size      = "20"
-    backup    = "true"
-  }]
-  cpus             = 2
-  ram              = 3072
-  pxe_boot         = false
-  uefi_boot        = true
-  vm_startup_order = "4"
-  vm_startup_delay = "5"
-}
-
 module "openbao_lxc" {
   source            = "./modules/lxc"
   lxc_description   = "OpenBao Container"

@@ -214,24 +214,6 @@ resource "opnsense_unbound_host_override" "netboot_6" {
   server      = "2600:6c50:77f:af03:be24:11ff:fe13:bd6f"
 }
 
-resource "opnsense_unbound_host_override" "netbox_4" {
-  enabled     = true
-  description = "netbox ipv4"
-  type        = "A"
-  hostname    = "netbox"
-  domain      = "localdomain"
-  server      = "192.168.7.114"
-}
-
-resource "opnsense_unbound_host_override" "netbox_6" {
-  enabled     = true
-  description = "netbox ipv6"
-  type        = "AAAA"
-  hostname    = "netbox"
-  domain      = "localdomain"
-  server      = "2600:6c50:77f:af03:be24:11ff:fe61:71ab"
-}
-
 resource "opnsense_unbound_host_override" "openbao_4" {
   enabled     = true
   description = "openbao ipv4"

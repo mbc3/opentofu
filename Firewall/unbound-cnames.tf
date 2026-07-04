@@ -16,24 +16,6 @@ resource "opnsense_unbound_host_alias" "bao6" {
   description = "Bao IPv6"
 }
 
-resource "opnsense_unbound_host_alias" "box4" {
-  override = opnsense_unbound_host_override.netbox_4.id
-
-  enabled     = true
-  hostname    = "box"
-  domain      = "netbox.localdomain"
-  description = "Box IPv4"
-}
-
-resource "opnsense_unbound_host_alias" "box6" {
-  override = opnsense_unbound_host_override.netbox_6.id
-
-  enabled     = true
-  hostname    = "box"
-  domain      = "netbox.localdomain"
-  description = "Box IPv6"
-}
-
 resource "opnsense_unbound_host_alias" "cooking4" {
   override = opnsense_unbound_host_override.hosted_4.id
 
@@ -214,24 +196,6 @@ resource "opnsense_unbound_host_alias" "pdf6" {
   hostname    = "pdf"
   domain      = "hosted.localdomain"
   description = "PDF IPv6"
-}
-
-resource "opnsense_unbound_host_alias" "proxbox4" {
-  override = opnsense_unbound_host_override.netbox_4.id
-
-  enabled     = true
-  hostname    = "proxbox-api"
-  domain      = "netbox.localdomain"
-  description = "Proxbox IPv4"
-}
-
-resource "opnsense_unbound_host_alias" "proxbox6" {
-  override = opnsense_unbound_host_override.netbox_6.id
-
-  enabled     = true
-  hostname    = "proxbox-api"
-  domain      = "netbox.localdomain"
-  description = "Proxbox IPv6"
 }
 
 resource "opnsense_unbound_host_alias" "prometheus4" {
