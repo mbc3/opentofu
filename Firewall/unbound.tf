@@ -16,6 +16,24 @@ resource "opnsense_unbound_host_override" "arch_6" {
   server      = "2600:6c50:77f:af02:78cc:11a:f6eb:84c"
 }
 
+resource "opnsense_unbound_host_override" "authentik_4" {
+  enabled     = true
+  description = "authentik ipv4"
+  type        = "A"
+  hostname    = "authentik"
+  domain      = "localdomain"
+  server      = "192.168.7.114"
+}
+
+resource "opnsense_unbound_host_override" "authentik_6" {
+  enabled     = true
+  description = "authentik ipv6"
+  type        = "AAAA"
+  hostname    = "authentik"
+  domain      = "internal"
+  server      = "2600:6c50:77f:af03:be24:11ff:fe7d:4a23"
+}
+
 resource "opnsense_unbound_host_override" "ca_4" {
   enabled     = true
   description = "ca ipv4"

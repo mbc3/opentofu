@@ -49,7 +49,7 @@ module "authentik_vm" {
   }]
   cpus             = 2
   ram              = 2048
-  pxe_boot         = true
+  pxe_boot         = false
   uefi_boot        = true
   vm_startup_order = "2"
   vm_startup_delay = "3"
