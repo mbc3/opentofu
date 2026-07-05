@@ -36,6 +36,25 @@ module "freeipa02_vm" {
   vm_startup_delay = "3"
 }
 
+module "authentik_vm" {
+  source         = "./modules/vm"
+  vm_name        = "authentik"
+  vm_description = "Authentik Server"
+  vm_tags        = ["auth"]
+  vm_id          = 114
+  disks = [{
+    interface = "scsi0"
+    size      = "20"
+    backup    = "true"
+  }]
+  cpus             = 2
+  ram              = 2048
+  pxe_boot         = true
+  uefi_boot        = true
+  vm_startup_order = "2"
+  vm_startup_delay = "3"
+}
+
 module "ca_lxc" {
   source            = "./modules/lxc"
   lxc_description   = "CA Container"
