@@ -270,6 +270,24 @@ resource "opnsense_unbound_host_alias" "search_6" {
   description = "Search IPv6"
 }
 
+resource "opnsense_unbound_host_alias" "sso_4" {
+  override = opnsense_unbound_host_override.authentik_4.id
+
+  enabled     = true
+  hostname    = "sso"
+  domain      = "authentik.localdomain"
+  description = "SSO IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "sso_6" {
+  override = opnsense_unbound_host_override.authentik_6.id
+
+  enabled     = true
+  hostname    = "sso"
+  domain      = "authentik.localdomain"
+  description = "SSO IPv6"
+}
+
 resource "opnsense_unbound_host_alias" "syncthing4" {
   override = opnsense_unbound_host_override.files_4.id
 
