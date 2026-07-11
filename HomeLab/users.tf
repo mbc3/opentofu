@@ -1,15 +1,3 @@
-resource "proxmox_virtual_environment_user" "mbc" {
-
-  comment    = "MBC"
-  email      = "cohen@matthewbriancohen.com"
-  first_name = "Matt"
-  last_name  = "Cohen"
-  password   = random_password.mbc_account_password.result
-  user_id    = "mbc@pve"
-  groups     = [proxmox_virtual_environment_group.infra.group_id]
-}
-
-
 resource "proxmox_virtual_environment_user" "iphone" {
 
   comment  = "iPhone User"
@@ -47,12 +35,6 @@ resource "random_password" "ansible_account_password" {
 }
 
 resource "random_password" "iphone_account_password" {
-  length           = 24
-  override_special = "_%@"
-  special          = true
-}
-
-resource "random_password" "mbc_account_password" {
   length           = 24
   override_special = "_%@"
   special          = true
