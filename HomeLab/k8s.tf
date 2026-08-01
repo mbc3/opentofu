@@ -1,9 +1,9 @@
 resource "proxmox_virtual_environment_vm" "talos-control" {
-  name        = "k8s-controller"
-  description = "K8s Control Node"
-  tags        = ["k8s"]
-  node_name = "services"
-  vm_id     = 150
+  name                                 = "k8s-controller"
+  description                          = "K8s Control Node"
+  tags                                 = ["k8s"]
+  node_name                            = "services"
+  vm_id                                = 150
   delete_unreferenced_disks_on_destroy = true
   purge_on_destroy                     = true
 
@@ -19,8 +19,8 @@ resource "proxmox_virtual_environment_vm" "talos-control" {
   }
 
   cpu {
-    cores        = 4
-    type         = "host"
+    cores = 4
+    type  = "host"
     units = "100"
   }
 
@@ -28,30 +28,30 @@ resource "proxmox_virtual_environment_vm" "talos-control" {
     dedicated = 2048
   }
 
-  bios = "ovmf"
-  machine = "q35"
+  bios          = "ovmf"
+  machine       = "q35"
   scsi_hardware = "virtio-scsi-pci"
 
   cdrom {
-    file_id = "local:iso/talos_nocloud-amd64.iso"
+    file_id   = "local:iso/talos_nocloud-amd64.iso"
     interface = "ide0"
   }
 
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
-    file_format = "raw"
-    size      = "20"
-    ssd = "true"
-    cache = "writethrough"
-    discard = "on"
-    backup = "true"
+    file_format  = "raw"
+    size         = "20"
+    ssd          = "true"
+    cache        = "writethrough"
+    discard      = "on"
+    backup       = "true"
   }
 
   efi_disk {
-    datastore_id = "local-zfs"
-    file_format = "raw"
-    type = "4m"
+    datastore_id      = "local-zfs"
+    file_format       = "raw"
+    type              = "4m"
     pre_enrolled_keys = false
   }
 
@@ -72,11 +72,11 @@ resource "proxmox_virtual_environment_vm" "talos-control" {
 }
 
 resource "proxmox_virtual_environment_vm" "talos-worker" {
-  name        = "k8s-worker"
-  description = "K8s Worker Node"
-  tags        = ["k8s"]
-  node_name = "services"
-  vm_id     = 151
+  name                                 = "k8s-worker"
+  description                          = "K8s Worker Node"
+  tags                                 = ["k8s"]
+  node_name                            = "services"
+  vm_id                                = 151
   delete_unreferenced_disks_on_destroy = true
   purge_on_destroy                     = true
 
@@ -92,8 +92,8 @@ resource "proxmox_virtual_environment_vm" "talos-worker" {
   }
 
   cpu {
-    cores        = 2
-    type         = "host"
+    cores = 2
+    type  = "host"
     units = "100"
   }
 
@@ -101,30 +101,30 @@ resource "proxmox_virtual_environment_vm" "talos-worker" {
     dedicated = 2048
   }
 
-  bios = "ovmf"
-  machine = "q35"
+  bios          = "ovmf"
+  machine       = "q35"
   scsi_hardware = "virtio-scsi-pci"
 
   cdrom {
-    file_id = "local:iso/talos_nocloud-amd64.iso"
+    file_id   = "local:iso/talos_nocloud-amd64.iso"
     interface = "ide0"
   }
 
   disk {
     datastore_id = "local-zfs"
     interface    = "scsi0"
-    file_format = "raw"
-    size      = "20"
-    ssd = "true"
-    cache = "writethrough"
-    discard = "on"
-    backup = "true"
+    file_format  = "raw"
+    size         = "20"
+    ssd          = "true"
+    cache        = "writethrough"
+    discard      = "on"
+    backup       = "true"
   }
 
   efi_disk {
-    datastore_id = "local-zfs"
-    file_format = "raw"
-    type = "4m"
+    datastore_id      = "local-zfs"
+    file_format       = "raw"
+    type              = "4m"
     pre_enrolled_keys = false
   }
 
