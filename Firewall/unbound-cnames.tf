@@ -115,7 +115,6 @@ resource "opnsense_unbound_host_alias" "grafana4" {
   description = "Grafana IPv4"
 }
 
-
 resource "opnsense_unbound_host_alias" "grafana6" {
   override = opnsense_unbound_host_override.graphs_6.id
 
@@ -278,7 +277,6 @@ resource "opnsense_unbound_host_alias" "syncthing4" {
   description = "Syncthing IPv4"
 }
 
-
 resource "opnsense_unbound_host_alias" "syncthing6" {
   override = opnsense_unbound_host_override.files_6.id
 
@@ -297,17 +295,6 @@ resource "opnsense_unbound_host_alias" "syncthing_pi4" {
   description = "Syncthing Mediapi IPv4"
 }
 
-
-resource "opnsense_unbound_host_alias" "syncthing_pi6" {
-  override = opnsense_unbound_host_override.mediapi_6.id
-
-  enabled     = true
-  hostname    = "syncthing"
-  domain      = "mediapi.localdomain"
-  description = "Syncthing Mediapi IPv6"
-}
-
-
 resource "opnsense_unbound_host_alias" "torrent4" {
   override = opnsense_unbound_host_override.files_4.id
 
@@ -316,7 +303,6 @@ resource "opnsense_unbound_host_alias" "torrent4" {
   domain      = "files.localdomain"
   description = "Torrent IPv4"
 }
-
 
 resource "opnsense_unbound_host_alias" "torrent6" {
   override = opnsense_unbound_host_override.files_6.id
@@ -335,7 +321,6 @@ resource "opnsense_unbound_host_alias" "up4" {
   domain      = "hosted.localdomain"
   description = "Up IPv4"
 }
-
 
 resource "opnsense_unbound_host_alias" "uptime6" {
   override = opnsense_unbound_host_override.hosted_6.id
