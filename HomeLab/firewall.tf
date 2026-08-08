@@ -172,13 +172,8 @@ resource "proxmox_virtual_environment_firewall_ipset" "ipset_6" {
   comment = "Local IPs IPv6"
 
   cidr {
-    name    = "2600:6c50:77f:af0::/60"
+    name    = "2603:8000:b500:550::/60"
     comment = "Local Network IPv6"
-  }
-
-  cidr {
-    name    = "2600:6c50:77f:af0f::/64"
-    comment = "Wireguard home IPv6"
   }
 }
 

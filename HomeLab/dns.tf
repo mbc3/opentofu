@@ -11,7 +11,7 @@ module "dns01_lxc" {
   swap              = 1024
   ram               = 512
   disk_size         = 15
-  dns_servers       = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+  dns_servers       = ["192.168.7.1", "2603:8000:b500:5503:2d0:b4ff:fe02:1195"]
   lxc_startup_order = "1"
   lxc_startup_delay = "1"
   lxc_template      = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
@@ -41,7 +41,7 @@ module "dns02_lxc" {
   swap              = 1024
   ram               = 512
   disk_size         = 15
-  dns_servers       = ["192.168.7.1", "2600:6c50:73f:8273:2d0:b4ff:fe02:1195"]
+  dns_servers       = ["192.168.7.1", "2603:8000:b500:5503:2d0:b4ff:fe02:1195"]
   lxc_startup_order = "1"
   lxc_startup_delay = "1"
   lxc_template      = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
