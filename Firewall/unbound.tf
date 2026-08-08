@@ -205,15 +205,6 @@ resource "opnsense_unbound_host_override" "mediapi_4" {
   server      = "192.168.3.60"
 }
 
-resource "opnsense_unbound_host_override" "mediapi_6" {
-  enabled     = true
-  description = "mediapi ipv6"
-  type        = "AAAA"
-  hostname    = "mediapi"
-  domain      = "localdomain"
-  server      = "2600:6c50:77f:af01:7177:fb33:cbf:6cd8"
-}
-
 resource "opnsense_unbound_host_override" "netboot_4" {
   enabled     = true
   description = "netboot ipv4"

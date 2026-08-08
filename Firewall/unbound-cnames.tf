@@ -125,25 +125,6 @@ resource "opnsense_unbound_host_alias" "grafana6" {
   description = "Grafana IPv6"
 }
 
-resource "opnsense_unbound_host_alias" "images4" {
-  override = opnsense_unbound_host_override.mediapi_4.id
-
-  enabled     = true
-  hostname    = "images"
-  domain      = "mediapi.localdomain"
-  description = "Images IPv4"
-}
-
-
-resource "opnsense_unbound_host_alias" "images6" {
-  override = opnsense_unbound_host_override.mediapi_6.id
-
-  enabled     = true
-  hostname    = "images"
-  domain      = "mediapi.localdomain"
-  description = "Images IPv6"
-}
-
 resource "opnsense_unbound_host_alias" "loki4" {
   override = opnsense_unbound_host_override.logs_4.id
 
