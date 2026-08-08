@@ -28,8 +28,8 @@ resource "proxmox_virtual_environment_vm" "talos-control" {
     dedicated = 2048
   }
 
-  started     = false
-  boot_order    = ["scsi0","ide0","net0"]
+  started       = false
+  boot_order    = ["scsi0", "ide0", "net0"]
   bios          = "ovmf"
   machine       = "q35"
   scsi_hardware = "virtio-scsi-pci"
@@ -103,8 +103,8 @@ resource "proxmox_virtual_environment_vm" "talos-worker" {
     dedicated = 2048
   }
 
-  started     = false
-  boot_order    = ["scsi0","ide0","net0"]
+  started       = false
+  boot_order    = ["scsi0", "ide0", "net0"]
   bios          = "ovmf"
   machine       = "q35"
   scsi_hardware = "virtio-scsi-pci"
