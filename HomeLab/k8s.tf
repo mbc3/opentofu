@@ -6,6 +6,7 @@ resource "proxmox_virtual_environment_vm" "talos-control" {
   vm_id                                = 150
   delete_unreferenced_disks_on_destroy = true
   purge_on_destroy                     = true
+  on_boot                              = false
 
   agent {
     enabled = true
@@ -75,6 +76,7 @@ resource "proxmox_virtual_environment_vm" "talos-worker" {
   vm_id                                = 151
   delete_unreferenced_disks_on_destroy = true
   purge_on_destroy                     = true
+  on_boot                              = false
 
   agent {
     enabled = true
