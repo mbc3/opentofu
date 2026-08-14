@@ -12,12 +12,6 @@ resource "proxmox_virtual_environment_vm" "talos-control" {
   }
   stop_on_destroy = true
 
-  startup {
-    order      = "10"
-    up_delay   = "60"
-    down_delay = "60"
-  }
-
   cpu {
     cores = 4
     type  = "host"
@@ -86,12 +80,6 @@ resource "proxmox_virtual_environment_vm" "talos-worker" {
     enabled = true
   }
   stop_on_destroy = true
-
-  startup {
-    order      = "10"
-    up_delay   = "60"
-    down_delay = "60"
-  }
 
   cpu {
     cores = 2
