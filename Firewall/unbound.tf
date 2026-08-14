@@ -13,7 +13,7 @@ resource "opnsense_unbound_host_override" "arch_6" {
   type        = "AAAA"
   hostname    = "arch"
   domain      = "internal"
-  server      = "2603:8000:b500:5502:bcaf:d2ff:63d4:41e9"
+  server      = "fd35:a2c1:18bd:2:c214:bc54:c2fc:8db5"
 }
 
 resource "opnsense_unbound_host_override" "authentik_4" {
