@@ -30,8 +30,26 @@ resource "opnsense_unbound_host_override" "authentik_6" {
   description = "authentik ipv6"
   type        = "AAAA"
   hostname    = "authentik"
-  domain      = "internal"
+  domain      = "localdomain"
   server      = "fd35:a2c1:18bd:3:be24:11ff:fe7d:4a23"
+}
+
+resource "opnsense_unbound_host_override" "authentik_ldap_4" {
+  enabled     = true
+  description = "authentik ldap outpost ipv4"
+  type        = "A"
+  hostname    = "authentik-ldap"
+  domain      = "localdomain"
+  server      = "192.168.7.100"
+}
+
+resource "opnsense_unbound_host_override" "authentik_ldap_6" {
+  enabled     = true
+  description = "authentik ldap outpost ipv6"
+  type        = "AAAA"
+  hostname    = "authentik-ldap"
+  domain      = "localdomain"
+  server      = "fd35:a2c1:18bd:3:be24:11ff:feec:b938"
 }
 
 resource "opnsense_unbound_host_override" "ca_4" {
