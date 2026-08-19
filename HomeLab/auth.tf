@@ -74,12 +74,52 @@ module "ca_lxc" {
   is_centos         = true
 }
 
-moved {
-  from = proxmox_virtual_environment_container.ca_container
-  to   = module.ca_lxc.proxmox_virtual_environment_container.lxc
-}
+# resource "proxmox_virtual_environment_container" "authentik_ldap" {
+#   description = "Authentik LDAP"
 
-moved {
-  from = random_password.ca_container_password
-  to   = module.ca_lxc.random_password.lxc_password
-}
+#   node_name = "authentik-ldap"
+#   vm_id     = 100
+
+#   unprivileged = true
+#   features {
+#     nesting = true
+#   }
+
+#   console {
+#     enabled = true
+#     type = "console"
+#     tty_count = 2
+#   }
+
+#   initialization {
+#     hostname = "autentik-ldap"
+#     entrypoint = "/ldap"
+
+#     ip_config {
+#       ipv4 {
+#         address = "192.168.7.100"
+#       }
+#     }
+#   }
+
+#   disk {
+#     datastore_id = "local-lvm"
+#     size         = 8
+#   }
+
+#   operating_system {
+#     template_file_id = "local:ldap_2026.tar"
+#     type = "debian"
+#   }
+
+#   startup {
+#     order      = "3"
+#     up_delay   = "60"
+#     down_delay = "60"
+#   }
+# }
+
+# import {
+#   to = proxmox_virtual_environment_container.authentik_ldap
+#   id = "authentik-ldap/100"
+# }
