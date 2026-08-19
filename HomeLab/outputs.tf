@@ -37,6 +37,11 @@ output "runner02_container_password" {
   sensitive = true
 }
 
+output "authentik_ldap_container_password" {
+  value     = module.authentik_ldap_lxc.lxc_password
+  sensitive = true
+}
+
 ###################
 # Account Passwords
 ###################

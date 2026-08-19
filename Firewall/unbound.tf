@@ -49,7 +49,7 @@ resource "opnsense_unbound_host_override" "authentik_ldap_6" {
   type        = "AAAA"
   hostname    = "authentik-ldap"
   domain      = "localdomain"
-  server      = "fd35:a2c1:18bd:3:be24:11ff:feec:b938"
+  server      = "fd35:a2c1:18bd:3:be24:11ff:fe12:4e37"
 }
 
 resource "opnsense_unbound_host_override" "ca_4" {
