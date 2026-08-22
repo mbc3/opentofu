@@ -8,7 +8,7 @@ module "dns01_lxc" {
   lxc_ip            = "192.168.7.101"
   ssh_key           = var.ssh_key
   cpus              = 2
-  swap              = 1024
+  swap              = 512
   ram               = 512
   disk_size         = 15
   dns_servers       = ["192.168.7.1", "2603:8000:b500:5503:2d0:b4ff:fe02:1195"]
@@ -38,7 +38,7 @@ module "dns02_lxc" {
   lxc_ip            = "192.168.7.106"
   ssh_key           = var.ssh_key
   cpus              = 2
-  swap              = 1024
+  swap              = 512
   ram               = 512
   disk_size         = 15
   dns_servers       = ["192.168.7.1", "2603:8000:b500:5503:2d0:b4ff:fe02:1195"]

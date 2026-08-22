@@ -8,7 +8,7 @@ module "proxy_lxc" {
   lxc_ip            = "192.168.7.116"
   ssh_key           = var.ssh_key
   cpus              = 2
-  swap              = 1024
+  swap              = 512
   ram               = 512
   disk_size         = 8
   lxc_startup_order = "6"

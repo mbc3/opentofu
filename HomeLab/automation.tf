@@ -57,7 +57,7 @@ module "runner01_lxc" {
   ssh_key           = var.ssh_key
   cpus              = 2
   swap              = 1024
-  ram               = 2048
+  ram               = 1024
   disk_size         = 15
   lxc_startup_order = "6"
   lxc_startup_delay = "5"
