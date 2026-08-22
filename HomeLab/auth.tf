@@ -84,8 +84,8 @@ module "authentik_ldap_lxc" {
   lxc_ip            = "192.168.7.100"
   ssh_key           = var.ssh_key
   cpus              = 2
-  swap              = 1024
-  ram               = 1024
+  swap              = 512
+  ram               = 512
   disk_size         = 15
   lxc_startup_order = "2"
   lxc_startup_delay = "2"
