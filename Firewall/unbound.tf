@@ -7,14 +7,14 @@ resource "opnsense_unbound_host_override" "arch_4" {
   server      = "192.168.5.100"
 }
 
-# resource "opnsense_unbound_host_override" "arch_6" {
-#   enabled     = true
-#   description = "arch ipv6"
-#   type        = "AAAA"
-#   hostname    = "arch"
-#   domain      = "internal"
-#   server      = "fd35:a2c1:18bd:2:c214:bc54:c2fc:8db5"
-# }
+resource "opnsense_unbound_host_override" "arch_6" {
+  enabled     = true
+  description = "arch ipv6"
+  type        = "AAAA"
+  hostname    = "arch"
+  domain      = "internal"
+  server      = "fd35:a2c1:18bd:5:1d69:3f46:1467:eeb4"
+}
 
 resource "opnsense_unbound_host_override" "authentik_4" {
   enabled     = true
