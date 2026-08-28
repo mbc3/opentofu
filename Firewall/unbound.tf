@@ -7,14 +7,14 @@ resource "opnsense_unbound_host_override" "arch_4" {
   server      = "192.168.5.100"
 }
 
-resource "opnsense_unbound_host_override" "arch_6" {
-  enabled     = true
-  description = "arch ipv6"
-  type        = "AAAA"
-  hostname    = "arch"
-  domain      = "internal"
-  server      = "fd35:a2c1:18bd:2:c214:bc54:c2fc:8db5"
-}
+# resource "opnsense_unbound_host_override" "arch_6" {
+#   enabled     = true
+#   description = "arch ipv6"
+#   type        = "AAAA"
+#   hostname    = "arch"
+#   domain      = "internal"
+#   server      = "fd35:a2c1:18bd:2:c214:bc54:c2fc:8db5"
+# }
 
 resource "opnsense_unbound_host_override" "authentik_4" {
   enabled     = true
@@ -323,14 +323,14 @@ resource "opnsense_unbound_host_override" "services_4" {
   server      = "192.168.7.20"
 }
 
-resource "opnsense_unbound_host_override" "services_6" {
-  enabled     = true
-  description = "services proxmox ipv6"
-  type        = "AAAA"
-  hostname    = "services"
-  domain      = "localdomain"
-  server      = "fd35:a2c1:18bd:3::720"
-}
+# resource "opnsense_unbound_host_override" "services_6" {
+#   enabled     = true
+#   description = "services proxmox ipv6"
+#   type        = "AAAA"
+#   hostname    = "services"
+#   domain      = "localdomain"
+#   server      = "fd35:a2c1:18bd:3::720"
+# }
 
 resource "opnsense_unbound_host_override" "forgejo_4" {
   enabled     = true

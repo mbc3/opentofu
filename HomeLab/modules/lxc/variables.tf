@@ -73,9 +73,9 @@ variable "lxc_template" {
   default     = "local:vztmpl/almalinux-9-default_20240911_amd64.tar.xz"
 }
 variable "dns_servers" {
-  description = "DNS servers for ipv4 and ipv6"
+  description = "DNS servers"
   type        = list(string)
-  default     = ["192.168.7.101", "192.168.7.106", "2603:8000:b500:5503:be24:11ff:fe9f:90c8", "2603:8000:b500:5503:be24:11ff:fe4e:9518"]
+  default     = ["192.168.7.101", "192.168.7.106"]
 }
 
 variable "ssh_key" {
