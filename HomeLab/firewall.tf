@@ -140,15 +140,15 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "block_we
 }
 
 resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_ipv6" {
-  name = "allow_ipv6"
+  name    = "allow_ipv6"
   comment = "Required rules for IPv6 neighbor discovery"
 
   rule {
     type    = "in"
     action  = "ACCEPT"
     comment = "Allow neighbor discovery"
-    source = "+dc/local6"
-    macro = "NeighborDiscovery"
+    source  = "+dc/local6"
+    macro   = "NeighborDiscovery"
     log     = "nolog"
   }
 
@@ -156,8 +156,8 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_ip
     type    = "in"
     action  = "ACCEPT"
     comment = "Allow DHCPv6"
-    source = "+dc/local6"
-    macro = "DHCPv6"
+    source  = "+dc/local6"
+    macro   = "DHCPv6"
     log     = "nolog"
   }
 }
