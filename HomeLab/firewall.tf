@@ -139,8 +139,31 @@ resource "proxmox_virtual_environment_cluster_firewall_security_group" "block_we
   }
 }
 
-### Alias ##
+resource "proxmox_virtual_environment_cluster_firewall_security_group" "allow_ipv6" {
+  name = "allow_ipv6"
+  comment = "Required rules for IPv6 neighbor discovery"
 
+  rule {
+    type    = "in"
+    action  = "ACCEPT"
+    comment = "Allow neighbor discovery"
+    source = "+dc/local6"
+    macro = "NeighborDiscovery"
+    log     = "nolog"
+  }
+
+  rule {
+    type    = "in"
+    action  = "ACCEPT"
+    comment = "Allow DHCPv6"
+    source = "+dc/local6"
+    macro = "DHCPv6"
+    log     = "nolog"
+  }
+}
+
+
+### Alias ##
 
 resource "proxmox_virtual_environment_firewall_ipset" "ipset" {
 
@@ -175,6 +198,11 @@ resource "proxmox_virtual_environment_firewall_ipset" "ipset_6" {
     name    = "2603:8000:b500:550::/60"
     comment = "Local Network IPv6"
   }
+
+  cidr {
+    name    = "fd00::/8"
+    comment = "Local Network ULA IPv6"
+  }
 }
 
 ## Firewall Rules ##
@@ -183,6 +211,12 @@ resource "proxmox_virtual_environment_firewall_rules" "dc" {
   depends_on = [
     proxmox_virtual_environment_cluster_firewall_security_group.allow_pxmx,
   ]
+
+  rule {
+    security_group = proxmox_virtual_environment_cluster_firewall_security_group.allow_ipv6.name
+    comment        = "Managed by OpenTofu"
+    enabled        = true
+  }
 
   rule {
     security_group = proxmox_virtual_environment_cluster_firewall_security_group.allow_pxmx.name
