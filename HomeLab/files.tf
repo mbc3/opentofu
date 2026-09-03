@@ -11,7 +11,7 @@ module "files_vm" {
     },
     {
       interface = "scsi1"
-      size      = "250"
+      size      = "350"
       backup    = "false"
   }]
   cpus             = 2
