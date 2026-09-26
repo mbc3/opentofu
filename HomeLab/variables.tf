@@ -1,3 +1,9 @@
+variable "proxmox_provider_version" {
+  description = "version for proxmox provider"
+  type        = string
+  default     = "0.114.0"
+}
+
 variable "role_id" {
   description = "role ID for tofu to authenticate with open bao"
   type        = string
