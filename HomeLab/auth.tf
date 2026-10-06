@@ -47,8 +47,8 @@ module "authentik_vm" {
     size      = "20"
     backup    = "true"
   }]
-  cpus             = 2
-  ram              = 2048
+  cpus             = 4
+  ram              = 4096
   pxe_boot         = false
   uefi_boot        = true
   vm_startup_order = "2"
