@@ -39,3 +39,9 @@ variable "dns_servers" {
   type        = list(string)
   default     = ["192.168.7.101", "192.168.7.106", "2603:8000:b500:5503:be24:11ff:fe9f:90c8", "2603:8000:b500:5503:be24:11ff:fe4e:9518"]
 }
+
+variable "node_dns_servers" {
+  description = "DNS server(s) for node"
+  type        = list(string)
+  default     = ["192.168.7.1"]
+}
