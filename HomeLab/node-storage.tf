@@ -3,7 +3,7 @@ resource "proxmox_storage_zfspool" "local_zfs" {
   zfs_pool       = "rpool/data"
   content        = ["images", "rootdir"]
   thin_provision = true
-  blocksize      = "64k"
+  blocksize      = "64k" # 64k best for virtual machines, 1MiB for file storage
 }
 
 resource "proxmox_storage_directory" "local" {
