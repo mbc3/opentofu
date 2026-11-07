@@ -21,6 +21,11 @@ resource "proxmox_network_linux_bridge" "vmbr0" {
 
 }
 
+resource "proxmox_virtual_environment_time" "services_time" {
+  node_name = "services"
+  time_zone = "America/Los_Angeles"
+}
+
 data "proxmox_virtual_environment_dns" "services" {
   node_name = "services"
 }

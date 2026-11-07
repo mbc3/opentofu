@@ -16,7 +16,7 @@ resource "proxmox_backup_job" "spare_backup" {
   id                = "backup-4e8a5267-3e44"
   comment           = "spare storage extra backup"
   prune_backups     = { keep-last = 2 }
-  schedule          = "sat 08:15"
+  schedule          = "sat 06:15"
   storage           = "spare"
   fleecing          = { enabled = true, storage = "local-zfs" }
   all               = true
