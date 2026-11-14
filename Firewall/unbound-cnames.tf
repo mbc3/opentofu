@@ -330,3 +330,21 @@ resource "opnsense_unbound_host_alias" "uptime6" {
   domain      = "hosted.localdomain"
   description = "Up IPv6"
 }
+
+resource "opnsense_unbound_host_alias" "woodpecker4" {
+  override = opnsense_unbound_host_override.forgejo_4.id
+
+  enabled     = true
+  hostname    = "woodpecker"
+  domain      = "forgejo.localdomain"
+  description = "Woodpecker IPv4"
+}
+
+resource "opnsense_unbound_host_alias" "woodpecker6" {
+  override = opnsense_unbound_host_override.forgejo_6.id
+
+  enabled     = true
+  hostname    = "woodpecker"
+  domain      = "forgejo.localdomain"
+  description = "Woodpecker IPv6"
+}

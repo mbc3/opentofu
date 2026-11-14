@@ -62,6 +62,18 @@ variable "lxc_unpriv" {
   default     = true
 }
 
+variable "lxc_keyctl" {
+  description = "enable keyctl support for the LXC container"
+  type        = bool
+  default     = false
+}
+
+variable "lxc_podman_enabled" {
+  description = "enable nested Podman UID/GID mappings"
+  type        = bool
+  default     = false
+}
+
 variable "lxc_ip" {
   description = "ip address of lxc container"
   type        = string

@@ -44,6 +44,18 @@ resource "proxmox_virtual_environment_container" "lxc" {
     type         = "gid"
   }
 
+  # idmap for podman
+  dynamic "idmap" {
+    for_each = var.lxc_podman_enabled ? ["uid", "gid"] : []
+
+    content {
+      container_id = 65536
+      host_id      = 165536
+      size         = 65536
+      type         = idmap.value
+    }
+  }
+
   initialization {
     hostname = var.lxc_name
 
@@ -94,6 +106,7 @@ resource "proxmox_virtual_environment_container" "lxc" {
   }
   features {
     nesting = "true"
+    keyctl  = var.lxc_keyctl
   }
 
   startup {

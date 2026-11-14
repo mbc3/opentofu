@@ -47,39 +47,43 @@ moved {
 }
 
 module "runner01_lxc" {
-  source            = "./modules/lxc"
-  lxc_description   = "Runner 01 Container"
-  lxc_name          = "runner01"
-  lxc_tags          = ["automation"]
-  lxc_id            = 112
-  lxc_unpriv        = true
-  lxc_ip            = "192.168.7.112"
-  ssh_key           = var.ssh_key
-  cpus              = 2
-  swap              = 1024
-  ram               = 1024
-  disk_size         = 15
-  lxc_startup_order = "6"
-  lxc_startup_delay = "5"
-  lxc_template      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
-  is_centos         = false
+  source             = "./modules/lxc"
+  lxc_description    = "Runner 01 Container"
+  lxc_name           = "runner01"
+  lxc_tags           = ["automation"]
+  lxc_id             = 112
+  lxc_unpriv         = true
+  lxc_ip             = "192.168.7.112"
+  ssh_key            = var.ssh_key
+  cpus               = 2
+  swap               = 1024
+  ram                = 1024
+  disk_size          = 15
+  lxc_keyctl         = true
+  lxc_podman_enabled = true
+  lxc_startup_order  = "6"
+  lxc_startup_delay  = "5"
+  lxc_template       = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+  is_centos          = false
 }
 
 module "runner02_lxc" {
-  source            = "./modules/lxc"
-  lxc_description   = "Runner 02 Container"
-  lxc_name          = "runner02"
-  lxc_tags          = ["automation"]
-  lxc_id            = 117
-  lxc_unpriv        = true
-  lxc_ip            = "192.168.7.117"
-  ssh_key           = var.ssh_key
-  cpus              = 2
-  swap              = 1024
-  ram               = 1024
-  disk_size         = 15
-  lxc_startup_order = "6"
-  lxc_startup_delay = "5"
-  lxc_template      = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
-  is_centos         = false
+  source             = "./modules/lxc"
+  lxc_description    = "Runner 02 Container"
+  lxc_name           = "runner02"
+  lxc_tags           = ["automation"]
+  lxc_id             = 117
+  lxc_unpriv         = true
+  lxc_ip             = "192.168.7.117"
+  ssh_key            = var.ssh_key
+  cpus               = 2
+  swap               = 1024
+  ram                = 1024
+  disk_size          = 15
+  lxc_keyctl         = true
+  lxc_podman_enabled = true
+  lxc_startup_order  = "6"
+  lxc_startup_delay  = "5"
+  lxc_template       = "local:vztmpl/debian-13-standard_13.1-2_amd64.tar.zst"
+  is_centos          = false
 }
