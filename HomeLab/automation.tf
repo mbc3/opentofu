@@ -10,7 +10,7 @@ module "netboot_vm" {
     backup    = "true"
   }]
   cpus             = 2
-  ram              = 2048
+  ram              = 1540
   pxe_boot         = false
   uefi_boot        = true
   vm_startup_order = "4"
